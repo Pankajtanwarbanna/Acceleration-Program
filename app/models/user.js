@@ -38,7 +38,7 @@ var userSchema = new mongoose.Schema({
     active : {
         type : Boolean,
         required : true,
-        default : false
+        default : true
     },
     temporarytoken : {
         type : String,

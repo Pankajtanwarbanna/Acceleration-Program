@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api', apiRoutes, adminApiRoutes);
 
 // connecting to mongo database
-mongoose.connect('mongodb://localhost:27017/acceleration', { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
+mongoose.connect('mongodb://admin:acceleration123@ds249717.mlab.com:49717/acceleration', { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
     if(err) {
         console.log(err);
     } else {

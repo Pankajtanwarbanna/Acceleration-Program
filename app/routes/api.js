@@ -70,29 +70,9 @@ module.exports = function (router){
                     }
                 } else {
 
-                    var email = {
-                        from: 'Acceleration Program Registration, support@acceleration.com',
-                        to: user.email,
-                        subject: 'Activation Link - Acceleration Program Registration',
-                        text: 'Hello '+ user.name + 'Thank you for registering with us.Please find the below activation link Activation link Thank you Pankaj Tanwar ',
-                        html: 'Hello <strong>'+ user.name + '</strong>,<br><br>Thank you for registering with us.Please find the below activation link<br><br><a href="http://localhost:3500/activate/'+ user.temporarytoken+'">Activation link</a><br><br>Thank you<br>Pankaj Tanwar'
-                    };
-
-                    client.sendMail(email, function(err, info){
-                        if (err ){
-                            console.log(err);
-                            res.json({
-                                success : false,
-                                message : 'Something went wrong. Account registered but couldnot send activation link!'
-                            });
-                        }
-                        else {
-                            console.log('Message sent: ' + info.response);
-                            res.json({
-                                success : true,
-                                message : 'Account registered! Please check your E-mail inbox for the activation link.'
-                            });
-                        }
+                    res.json({
+                        success : true,
+                        message : 'Account registered!'
                     });
                 }
             });
