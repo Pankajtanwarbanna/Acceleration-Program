@@ -77,4 +77,47 @@ angular.module('userCtrl',['userServices'])
             app.course.course_url = $sce.trustAsResourceUrl(app.course.course_url)
         }
     })
+})
+
+.controller('workstationCtrl', function (user) {
+    let app = this;
+
+    function getMyWork() {
+        user.getMyWork().then(function (data) {
+            if(data.data.success) {
+                app.work = data.data.work;
+            }
+        });
+    }
+
+    getMyWork();
+
+    // save work space
+    app.saveMyWork = function (workData) {
+        user.saveMyWork(app.workData).then(function (data) {
+            if(data.data.success) {
+                app.workSavedSuccessMsg = data.data.message;
+                getMyWork();
+            } else {
+                app.workSavedErrorMsg = data.data.message;
+            }
+        })
+    }
+})
+
+.controller('courseRequestCtrl', function (user) {
+    var app = this;
+
+    app.postNewCourseRequest = function (courseRequestData) {
+        user.postNewCourseRequest(app.courseRequestData).then(function (data) {
+            console.log(data);
+            if(data.data.success) {
+                app.postNewCourseRequestSuccessMsg = data.data.message;
+            } else {
+                app.postNewCourseRequestErrorMsg = data.data.message;
+            }
+        });
+    }
+
+
 });

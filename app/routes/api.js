@@ -6,6 +6,8 @@ var User = require('../models/user');
 var Category = require('../models/category');
 var Course = require('../models/course');
 var Workshop = require('../models/workshop');
+var Workstation = require('../models/workstation');
+var CourseRequest = require('../models/courseRequest');
 var jwt = require('jsonwebtoken');
 var secret = 'pankaj';
 var nodemailer = require('nodemailer');
@@ -680,6 +682,76 @@ module.exports = function (router){
             }
         })
     });
+
+    // save my work
+    router.post('/saveMyWork', auth.ensureUser, function (req, res) {
+
+        var workstation = new Workstation();
+
+        workstation.work = req.body.work;
+        workstation.user_email = req.decoded.email;
+        workstation.timestamp = new Date();
+
+        workstation.save(function (err) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    message : 'Your work saved.'
+                })
+            }
+        })
+    });
+
+    // save my work
+    router.get('/getMyWork', auth.ensureUser, function (req, res) {
+
+        Workstation.find({ user_email : req.decoded.email }, function (err, work) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    work : work
+                });
+            }
+        })
+    });
+
+    // post course request
+    router.post('/postNewCourseRequest', auth.ensureUser, function (req, res) {
+        let courseRequest = new CourseRequest();
+
+        courseRequest.course = req.body.course;
+        courseRequest.username = req.decoded.username;
+        courseRequest.category = req.body.category;
+        courseRequest.description = req.body.description;
+        courseRequest.preferred_format = req.body.preferred_format;
+        courseRequest.timestamp = new Date();
+
+        courseRequest.save(function (err) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    message : 'Course Request successfully posted.'
+                })
+            }
+        })
+
+    })
+
     return router;
 };
 

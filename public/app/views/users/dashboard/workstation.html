@@ -1,1 +1,92 @@
-<h1>Workstation Page heading</h1>
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Workstation</h1>
+</div>
+<!-- /page header -->
+
+<!-- Grid -->
+<div class="row">
+
+    <!-- Grid Item -->
+    <div class="col-12">
+
+        <!-- Card -->
+        <div class="dt-card">
+            <!-- /card header -->
+
+            <!-- Card Body -->
+            <div class="dt-card__body">
+
+                <form ng-submit="workstation.saveMyWork(workData);" ng-show="!workstation.workSavedSuccessMsg">
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Your personal workspace!  </label>
+                            <textarea class="form-control" rows="5" name="workspace" placeholder="Write your work here.." ng-model="workstation.workData.work" required></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-success" type="submit">Save my work!</button>
+                </form>
+
+                <div class="alert alert-success" role="alert" ng-show="workstation.workSavedSuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ workstation.workSavedSuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger" role="alert" ng-show="workstation.workSavedErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ workstation.workSavedErrorMsg }}</p>
+                </div>
+                <!-- /card body -->
+
+            </div>
+            <!-- /card body -->
+
+        </div>
+        <!-- /card -->
+
+    </div>
+    <!-- /grid item -->
+
+</div>
+<!-- /grid -->
+
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Your Previous Work</h1>
+</div>
+<!-- /page header -->
+
+<!-- Grid -->
+<div class="row">
+
+    <!-- Grid Item -->
+    <div class="col-6" ng-repeat="work in workstation.work">
+
+        <!-- Card -->
+        <div class="dt-card">
+            <!-- /card header -->
+
+            <!-- Card Body -->
+            <div class="dt-card__body">
+
+                <div class="form-row">
+                    <div class="col-sm-12 mb-3">
+                        <label>Your personal workspace!  </label>
+                        <textarea class="form-control" rows="5" name="workspace" placeholder="Write your work here.." ng-model="work.work" required></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /card body -->
+
+        </div>
+        <!-- /card -->
+
+    </div>
+    <!-- /grid item -->
+
+</div>
+<!-- /grid -->
+
+
+

@@ -1,7 +1,9 @@
 let auth = require('../auth/authPermission');
 let Category = require('../models/category');
+let User = require('../models/user');
 let Course = require('../models/course');
 let Workshop = require('../models/workshop');
+let CourseRequest = require('../models/courseRequest');
 
 module.exports = function (router){
 
@@ -244,6 +246,56 @@ module.exports = function (router){
                 res.json({
                     success : true,
                     message : 'Workshop successfully updated.'
+                })
+            }
+        })
+    });
+
+    // get course requests
+    router.get('/getNewCourseRequests', auth.ensureAdmin, function (req, res) {
+        CourseRequest.find({  }, function (err, courseRequests) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    courseRequests : courseRequests
+                })
+            }
+        })
+    });
+
+    router.delete('/removeCourseRequest/:requestID', auth.ensureAdmin, function (req, res) {
+        CourseRequest.findByIdAndDelete({ _id : req.params.requestID }, function (err) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    message : 'Course Request successfully deleted.'
+                })
+            }
+        })
+    });
+
+    // get users
+    router.get('/getUsers', function (req, res) {
+        User.find({ }, function (err, users) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    users : users
                 })
             }
         })

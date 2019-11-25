@@ -91,5 +91,20 @@ angular.module('userServices',[])
         return $http.get('/api/getCourseDetails/' + courseID);
     };
 
+    // save my work
+    userFactory.saveMyWork = function (workData) {
+        return $http.post('/api/saveMyWork', workData);
+    };
+
+    // get my work
+    userFactory.getMyWork = function () {
+        return $http.get('/api/getMyWork');
+    };
+
+    // post new course request
+    userFactory.postNewCourseRequest = function (courseRequetData) {
+        return $http.post('/api/postNewCourseRequest', courseRequetData);
+    };
+
     return userFactory;
 });

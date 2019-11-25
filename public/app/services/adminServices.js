@@ -61,5 +61,20 @@ angular.module('adminServices',[])
         return $http.post('/api/updateWorkshop' , workshopData);
     };
 
+    // admin get course requests
+    adminFactory.getNewCourseRequests = function () {
+        return $http.get('/api/getNewCourseRequests');
+    };
+
+    // remove course request
+    adminFactory.removeCourseRequest = function (courseRequestID) {
+        return $http.delete('/api/removeCourseRequest/' + courseRequestID);
+    };
+
+    // get users
+    adminFactory.getUsers = function () {
+        return $http.get('/api/getUsers')
+    };
+
     return adminFactory;
 });

@@ -1,1 +1,75 @@
-<h1>Course  Request Page heading</h1>
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Request New Course</h1>
+</div>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-12">
+        <!-- Card -->
+        <div class="dt-card">
+            <!-- Card Body -->
+            <div class="dt-card__body">
+                <!-- Form -->
+                <form ng-submit="courseRequest.postNewCourseRequest(courseRequestData);" class="mb-6" ng-show="!courseRequest.postNewCourseRequestSuccessMsg">
+                    <div class="form-row">
+                        <div class="col-sm-6 mb-3">
+                            <label>Course Title  </label>
+                            <input class="form-control" type="text" name="name" placeholder="Enter Course Name" ng-model="courseRequest.courseRequestData.course" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label>Course Category</label>
+                            <select class="form-control" id="simple-select" ng-model="courseRequest.courseRequestData.category" required>
+                                <option value="">-- Select Category --</option>
+                                <option ng-repeat="category in main.categories" value="{{ category.category }}">{{ category.category }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Course Description  </label>
+                            <textarea class="form-control" rows="5" name="branch" placeholder="Enter course description" ng-model="courseRequest.courseRequestData.description" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Course Category</label>
+                            <select class="form-control" id="simple-select1" ng-model="courseRequest.courseRequestData.preferred_format" required>
+                                <option value="">-- Select Preferred Format --</option>
+                                <option value="PDF">PDF</option>
+                                <option value="Video">Video</option>
+                                <option value="Workshop">Workshop</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--<div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Workshop Poster</label>
+                            <input class="form-control" type="file" name="poster" placeholder="Upload poster" ng-model="courseRequest.courseRequestData.poster" required>
+                        </div>
+                    </div>-->
+                    <button class="btn btn-primary" type="submit">Post Request Now</button>
+                </form>
+                <!-- /form -->
+
+                <div class="alert alert-success" role="alert" ng-show="courseRequest.postNewCourseRequestSuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ courseRequest.postNewCourseRequestSuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger" role="alert" ng-show="courseRequest.postNewCourseRequestErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ courseRequest.postNewCourseRequestErrorMsg }}</p>
+                </div>
+                <!-- /card body -->
+
+            </div>
+            <!-- /card -->
+        </div>
+        <!-- /grid item -->
+    </div>
+    <!-- /grid -->
+</div>
+
+
+

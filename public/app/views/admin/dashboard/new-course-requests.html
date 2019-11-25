@@ -1,1 +1,83 @@
-<h1> New Course Requests ( Page under construction)</h1>
+<h1>New Course Requests</h1>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-xl-12" ng-repeat="courseRequest in courseRequestManagement.courseRequests">
+
+        <!-- Card -->
+        <div class="card horizontal">
+
+            <!-- Slider -->
+            <div class="dt-slider">
+
+                <!-- Slider Header -->
+                <div class="dt-slider__header">
+
+                    <span class="badge bg-orange text-white text-uppercase">Course Request</span>
+                </div>
+                <!-- /slider header -->
+
+                <img class="img-fluid" src="/assets/uploads/course-request.png" alt="New Course">
+
+
+            </div>
+            <!-- /slider -->
+
+            <!-- Card Stacked -->
+            <div class="card-stacked">
+
+                <!-- Card Body -->
+                <div class="card-body">
+
+                    <!-- Badges -->
+                    <span class="badge badge-secondary text-uppercase mb-2">{{ courseRequest.category }} Category</span>
+                    <!-- /badges -->
+
+                    <!-- Card Title-->
+                    <h3 class="card-title text-truncate text-uppercase">{{ courseRequest.course }}</h3>
+                    <!-- Card Title-->
+
+                    <!-- Card Sub Title-->
+                    <h5 class="card-subtitle"><i class="icon icon-location icon-fw"></i> {{ courseRequest.category }}</h5>
+                    <!-- /card sub title-->
+
+                    <!-- Content Area -->
+                    <p class="card-text text-truncate">
+                        {{ courseRequest.description }}
+                    </p>
+
+                    <span class="min-w-150 d-inline-block border-top mb-2"></span>
+
+                    <div class="d-flex flex-wrap mb-4">
+                        <div class="pr-3">Required Format : <span class="text-dark">{{ courseRequest.preferred_format }}</span></div>
+                    </div>
+                    <!-- /content area -->
+
+                    <div>
+                        <span class="d-inline-block mr-3"><i class="icon icon-user icon-fw"></i> Posted by @{{ courseRequest.username }}</span>
+                        <span class="d-inline-block"><i class="icon icon-calendar icon-fw"></i> {{ courseRequest.timestamp | date : 'MMM d, y' }}</span>
+                    </div>
+
+                </div>
+                <!-- /card body -->
+
+                <!-- Card Footer -->
+                <div class="card-footer d-flex flex-column justify-content-between">
+
+                    <!-- Card Button -->
+                    <a href="#" ng-click="courseRequestManagement.removeCourseRequest(courseRequest._id);" class="btn btn-danger text-uppercase"><i class="icon icon-trash icon-fw"></i> Delete </a>
+                    <!-- /card button -->
+                </div>
+                <!-- /card footer -->
+
+            </div>
+            <!-- /card stacked -->
+
+        </div>
+        <!-- /card -->
+
+    </div>
+    <!-- /grid item -->
+
+</div>
+

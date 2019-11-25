@@ -146,4 +146,33 @@ angular.module('managementController', ['adminServices'])
             }
         })
     }
+})
+
+.controller('courseRequestManagementCtrl', function (admin) {
+
+    let app = this;
+
+    admin.getNewCourseRequests().then(function (data) {
+        if(data.data.success) {
+            app.courseRequests = data.data.courseRequests;
+        }
+    });
+
+    app.removeCourseRequest = function (courseRequestID) {
+        admin.removeCourseRequest(courseRequestID).then(function (data) {
+            console.log(data);
+        })
+    }
+})
+
+.controller('userManagementCtrl', function (admin) {
+
+    let app = this;
+
+    admin.getUsers().then(function (data) {
+        console.log(data);
+        if(data.data.success) {
+            app.users = data.data.users;
+        }
+    })
 });

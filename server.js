@@ -25,6 +25,7 @@ mongoose.connect('mongodb://admin:acceleration123@ds249717.mlab.com:49717/accele
         console.log('Successfully connected to database.');
     }
 });
+
 // index page
 app.get('*', function (req,res) {
     res.sendFile(__dirname + '/public/app/views/index.html');

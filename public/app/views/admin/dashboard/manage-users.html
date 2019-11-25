@@ -1,1 +1,52 @@
-<h1>Page under construction</h1>
+<h1>Manage Users</h1>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-xl-12">
+
+        <!-- Card -->
+        <div class="dt-card overflow-hidden">
+
+            <!-- Card Body -->
+            <div class="dt-card__body p-0">
+
+                <!-- Tables -->
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th class="text-uppercase" scope="col">Name</th>
+                            <th class="text-uppercase" scope="col">Username</th>
+                            <th class="text-uppercase" scope="col">Email</th>
+                            <th class="text-uppercase" scope="col">Permission</th>
+                            <th class="text-uppercase" scope="col">Position</th>
+                            <th class="text-uppercase" scope="col">Branch</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in userManagement.users">
+                            <th scope="row">{{ $index + 1}}</th>
+                            <td>{{ user.name }}</td>
+                            <td>@{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.permission }}</td>
+                            <td>{{ user.position }}</td>
+                            <td>{{ user.branch }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /tables -->
+
+            </div>
+            <!-- /card body -->
+
+        </div>
+        <!-- /card -->
+
+    </div>
+    <!-- /grid item -->
+
+
+</div>

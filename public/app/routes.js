@@ -70,13 +70,17 @@ var app = angular.module('userRoutes', ['ngRoute'])
             .when('/work-station', {
                 templateUrl : '/app/views/users/dashboard/workstation.html',
                 authenticated : true,
-                permission : 'user'
+                permission : 'user',
+                controller : 'workstationCtrl',
+                controllerAs : 'workstation'
             })
 
             .when('/request-course', {
                 templateUrl : '/app/views/users/dashboard/course-request.html',
                 authenticated : true,
-                permission : 'user'
+                permission : 'user',
+                controller : 'courseRequestCtrl',
+                controllerAs : 'courseRequest'
             })
 
             .when('/course/:courseID', {
@@ -116,7 +120,9 @@ var app = angular.module('userRoutes', ['ngRoute'])
             .when('/new-course-requests', {
                 templateUrl : '/app/views/admin/dashboard/new-course-requests.html',
                 authenticated : true,
-                permission : 'admin'
+                permission : 'admin',
+                controller : 'courseRequestManagementCtrl',
+                controllerAs : 'courseRequestManagement'
             })
 
             .when('/add-new-workshop', {
@@ -147,7 +153,9 @@ var app = angular.module('userRoutes', ['ngRoute'])
             .when('/manage-users', {
                 templateUrl : '/app/views/admin/dashboard/manage-users.html',
                 authenticated : true,
-                permission : 'admin'
+                permission : 'admin',
+                controller : 'userManagementCtrl',
+                controllerAs : 'userManagement'
             })
 
             .when('/manage-category', {
