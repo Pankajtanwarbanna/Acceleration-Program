@@ -1,7 +1,7 @@
 var express  = require('express');
 var app = express();
 var morgan = require('morgan');             // middleware to log http requests
-var port = 3500 || process.env.PORT;
+var port = process.env.PORT || 3500;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var router = express.Router();
