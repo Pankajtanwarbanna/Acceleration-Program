@@ -1,0 +1,79 @@
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Edit Workshop</h1>
+</div>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-12">
+        <!-- Card -->
+        <div class="dt-card">
+            <!-- Card Body -->
+            <div class="dt-card__body">
+                <!-- Form -->
+                <form ng-submit="workshopManagement.updateWorkshop(workshopData);" class="mb-6">
+                    <div class="form-row">
+                        <div class="col-sm-6 mb-3">
+                            <label>Workshop Title  </label>
+                            <input class="form-control" type="text" name="name" placeholder="Enter Course Name" ng-model="workshopManagement.workshopData.title" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label>Workshop Category</label>
+                            <select class="form-control" id="simple-select" ng-model="workshopManagement.workshopData.category" required>
+                                <option value="">-- Select Category --</option>
+                                <option ng-repeat="category in main.categories" value="{{ category.category }}">{{ category.category }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Workshop Description  </label>
+                            <textarea class="form-control" rows="5" name="branch" placeholder="Enter workshop description" ng-model="workshopManagement.workshopData.description" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-4 mb-3">
+                            <label>Workshop Presenter  </label>
+                            <input class="form-control" type="text" name="presenter" placeholder="Enter workshop presenter" ng-model="workshopManagement.workshopData.presenter" required>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <label>Workshop Venue  </label>
+                            <input class="form-control" type="text" name="venue" placeholder="Enter workshop venue" ng-model="workshopManagement.workshopData.venue" required>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <label>Date & Time </label>
+                            <input class="form-control" type="datetime-local" name="time_date" ng-model="workshopManagement.workshopData.time_date" required>
+                        </div>
+                    </div>
+                    <!--<div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Workshop Poster</label>
+                            <input class="form-control" type="file" name="poster" placeholder="Upload poster" ng-model="workshopManagement.workshopData.poster" required>
+                        </div>
+                    </div>-->
+                    <button class="btn btn-primary" type="submit">Update Workshop Now</button>
+                </form>
+                <!-- /form -->
+
+                <div class="alert alert-success" role="alert" ng-show="workshopManagement.updateWorkshopSuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ workshopManagement.updateWorkshopSuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger" role="alert" ng-show="workshopManagement.updateWorkshopErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ workshopManagement.updateWorkshopErrorMsg }}</p>
+
+                </div>
+                <!-- /card body -->
+
+            </div>
+            <!-- /card -->
+        </div>
+        <!-- /grid item -->
+    </div>
+    <!-- /grid -->
+</div>
+
+
+

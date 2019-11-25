@@ -1,0 +1,96 @@
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Manage Categories</h1>
+</div>
+
+<!-- Grid -->
+<div class="row dt-masonry">
+
+    <!-- Grid Item -->
+    <div class="col-md-12 dt-masonry__item">
+
+        <!-- Card -->
+        <div class="dt-card">
+
+            <!-- Card Header -->
+            <div class="dt-card__header">
+
+                <!-- Card Heading -->
+                <div class="dt-card__heading">
+                    <h3 class="dt-card__title">All Categories</h3>
+                </div>
+                <!-- /card heading -->
+
+            </div>
+            <!-- /card header -->
+
+            <!-- Card Body -->
+            <div class="dt-card__body">
+
+                <div class="alert alert-success" role="alert" ng-show="manageCategory.removeCategorySuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ manageCategory.removeCategorySuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger" role="alert" ng-show="manageCategory.removeCategoryErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ manageCategory.removeCategoryErrorMsg }}</p>
+                </div>
+
+                <button type="button" ng-repeat="category in manageCategory.categories" ng-click="manageCategory.removeCategory(category._id)" class="btn btn-danger mr-2 mb-2">{{ category.category }} <i class="icon icon-trash pl-4"></i> </button>
+            </div>
+            <!-- /card body -->
+
+        </div>
+        <!-- /card -->
+
+        <!-- Add New Category Card-->
+        <!-- Card -->
+        <div class="dt-card">
+
+            <!-- Card Header -->
+            <div class="dt-card__header">
+
+                <!-- Card Heading -->
+                <div class="dt-card__heading">
+                    <h3 class="dt-card__title">Add New Category</h3>
+                </div>
+                <!-- /card heading -->
+
+            </div>
+            <!-- /card header -->
+
+            <!-- Card Body -->
+            <div class="dt-card__body">
+                <form ng-submit="manageCategory.addNewCategory(categoryData);" class="mb-4" ng-show="!manageCategory.addCategorySuccessMsg">
+                    <div class="form-row">
+                        <div class="col-sm-8 mb-3">
+                            <label>Category</label>
+                            <input class="form-control" type="text" name="name" placeholder="Enter category" ng-model="manageCategory.categoryData.category" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add Category </button>
+                </form>
+
+                <div class="alert alert-success" role="alert" ng-show="manageCategory.addCategorySuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ manageCategory.addCategorySuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger" role="alert" ng-show="manageCategory.addCategoryErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ manageCategory.addCategoryErrorMsg }}</p>
+                </div>
+
+            </div>
+            <!-- /card body -->
+
+
+        </div>
+        <!-- /card -->
+
+    </div>
+    <!-- /grid item -->
+</div>
+
+

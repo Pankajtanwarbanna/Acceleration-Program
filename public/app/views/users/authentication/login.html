@@ -1,0 +1,55 @@
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Login Now</h1>
+</div>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-xl-12">
+        <!-- Card -->
+        <div class="dt-card">
+            <!-- Card Body -->
+            <div class="dt-card__body">
+                <form ng-submit="main.doLogin(logData);">
+                    <label>Username :</label>
+                    <input ng-disabled="main.disabled" class="form-control" type="text" placeholder="Enter username" ng-model="main.logData.username" required>
+                    <br>
+
+                    <label>Password :</label>
+                    <input ng-disabled="main.disabled" class="form-control" type="password" placeholder="Enter password" ng-model="main.logData.password" required>
+                    <br>
+
+                    <button ng-disabled="main.disabled" type="submit" class="btn btn-primary">Login </button>
+                    <a href="/forgot"><button class="btn btn-success">Forgot? </button></a>
+                </form>
+                <br>
+
+                <div class="text-center" ng-show="main.loading">
+                    <span class="glyphicon glyphicon-repeat spinner"></span>
+                    <p> Loading..... </p>
+                </div>
+
+                <div class="row show-hide-message">
+                    <div class="alert alert-success" ng-show="main.successMsg">
+                        <strong> Success! </strong> {{ main.successMsg  }}
+                    </div>
+                </div>
+
+                <div class="row show-hide-message">
+                    <div class="alert alert-danger" ng-show="main.errorMsg">
+                        <strong> Oops! </strong> {{ main.errorMsg  }}
+                        <div class="text-center" ng-show="main.expired">
+                            <br>
+                            <a href="/resend"><button type="button" class="btn btn-success">Resend Link</button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /card body -->
+        </div>
+        <!-- /card -->
+    </div>
+    <!-- /grid item -->
+</div>
+<!-- /grid -->

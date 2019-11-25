@@ -1,0 +1,62 @@
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Edit Course</h1>
+</div>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-12">
+        <!-- Card -->
+        <div class="dt-card">
+            <!-- Card Body -->
+            <div class="dt-card__body">
+                <!-- Form -->
+                <form ng-submit="courseManagement.editCourse(courseManagement.courseData);" class="mb-6">
+                    <div class="form-row">
+                        <div class="col-sm-6 mb-3">
+                            <label>Course Name  </label>
+                            <input class="form-control" type="text" name="name" placeholder="Enter Course Name" ng-model="courseManagement.courseData.course_name" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label>Course Category</label>
+                            <select class="form-control" id="simple-select" ng-model="courseManagement.courseData.category" required>
+                                <option value="">-- Select Category --</option>
+                                <option ng-repeat="category in main.categories" value="{{ category.category }}">{{ category.category }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Course Description  </label>
+                            <textarea class="form-control" rows="5" name="branch" placeholder="Enter course description" ng-model="courseManagement.courseData.description" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Course Video URL</label>
+                            <input class="form-control" type="url" name="url" placeholder="Enter course YouTube video URL" ng-model="courseManagement.courseData.course_url" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Update Course Now</button>
+                </form>
+                <!-- /form -->
+
+                <div class="alert alert-success" role="alert" ng-show="courseManagement.editCourseSuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ courseManagement.editCourseSuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger" role="alert" ng-show="courseManagement.editCourseErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ courseManagement.editCourseErrorMsg }}</p>
+
+                </div>
+                <!-- /card body -->
+
+            </div>
+            <!-- /card -->
+        </div>
+        <!-- /grid item -->
+    </div>
+    <!-- /grid -->
+

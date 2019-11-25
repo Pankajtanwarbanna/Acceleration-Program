@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Drift - A fully responsive, HTML5 based admin template">
+    <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
+
+    <!-- Logo -->
+    <link rel="shortcut icon" type="image/png" href="/assets/images/logo/logo.png"/>
+
+    <title>Employ Acceleration Programs Portal</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <!-- Font Icon Styles -->
+    <link rel="stylesheet" href="/assets/modules/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/assets/vendors/gaxon-icon/styles.css">
+    <!-- /font icon Styles -->
+
+    <!-- Perfect Scrollbar stylesheet -->
+    <link rel="stylesheet" href="/assets/modules/perfect-scrollbar/css/perfect-scrollbar.css">
+    <!-- /perfect scrollbar stylesheet -->
+
+    <!-- Load Styles -->    <link rel="stylesheet" href="/assets/modules/owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/modules/chartist/dist/chartist.min.css">
+    <link rel="stylesheet" href="/assets/css/semidark-style-1.min.css">
+    <!-- /load styles -->
+
+    <!-- App config -->
+    <script src="/app/app.js"></script>
+    <script src="/app/routes.js"></script>
+
+    <!-- Angular Controller files -->
+    <script src="/app/controllers/userCtrl.js"></script>
+    <script src="/app/controllers/mainCtrl.js"></script>
+    <script src="/app/controllers/managementCtrl.js"></script>
+    <script src="/app/controllers/emailCtrl.js"></script>
+
+    <!-- Angular Services -->
+    <script src="/app/services/userServices.js"></script>
+    <script src="/app/services/adminServices.js"></script>
+    <script src="/app/services/authServices.js"></script>
+
+</head>
+
+<body ng-app="userApp" ng-controller="mainCtrl as main" class="dt-sidebar--fixed dt-header--fixed">
+
+    <!-- Loader -->
+    <div class="dt-loader-container">
+        <div class="dt-loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+            </svg>
+        </div>
+    </div>
+    <!-- /loader -->
+    <!-- Root -->
+    <div class="dt-root">
+        <div class="dt-root__inner">
+            <!-- Header -->
+            <header class="dt-header">
+
+                <!-- Header container -->
+                <div class="dt-header__container">
+
+                    <!-- Brand -->
+                    <div class="dt-brand">
+
+                        <!-- Brand tool -->
+                        <div class="dt-brand__tool" data-toggle="main-sidebar">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                        <!-- /brand tool -->
+
+                        <!-- Brand logo -->
+                        <span class="dt-brand__logo">
+                            <a class="dt-brand__logo-link" href="#">
+                              <!--<img class="dt-brand__logo-img d-none d-sm-inline-block" src="/assets/images/logo.png" alt="Drift">
+                              <img class="dt-brand__logo-symbol d-sm-none" src="/assets/images/logo-symbol.png" alt="Drift">-->
+                            </a>
+                          </span>
+                        <!-- /brand logo -->
+
+                    </div>
+                    <!-- /brand -->
+
+                    <!-- Header toolbar-->
+                    <div class="dt-header__toolbar" ng-show="main.isLoggedIn">
+
+                        <!-- Header Menu Wrapper -->
+                        <div class="dt-nav-wrapper">
+
+                            <!-- Header Menu -->
+                            <ul class="dt-nav">
+                                <li class="dt-nav__item dt-notification dropdown">
+
+                                    <!-- Dropdown Link -->
+                                    <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
+                                       aria-haspopup="true" aria-expanded="false"> <i class="icon icon-notification2 icon-fw dt-icon-alert"></i>
+                                    </a>
+                                    <!-- /dropdown link -->
+
+                                    <!-- Dropdown Option -->
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-media">
+                                        <!-- Dropdown Menu Header -->
+                                        <div class="dropdown-menu-header">
+                                            <h4 class="title">Notifications (0)</h4>
+
+                                            <div class="ml-auto action-area">
+                                                <a href="javascript:void(0)">No Notifications</a> <a class="ml-2" href="javascript:void(0)">
+                                                <i class="icon icon-notification icon-lg text-light-gray"></i> </a>
+                                            </div>
+                                        </div>
+                                        <!-- /dropdown menu header -->
+
+                                    </div>
+                                    <!-- /dropdown option -->
+
+                                </li>
+
+                            </ul>
+                            <!-- /header menu -->
+
+                            <!-- Header Menu -->
+                            <ul class="dt-nav">
+                                <li class="dt-nav__item dropdown">
+                                    <!-- Dropdown Link -->
+                                    <a href="#" class="dt-nav__link dropdown-toggle no-arrow dt-avatar-wrapper"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img class="dt-avatar size-30" src="/assets/images/user-avatar/domnic-harris.jpg" alt="Domnic Harris">
+                                        <span class="dt-avatar-info d-none d-sm-block">
+                                        <span class="dt-avatar-name">{{ main.name }}</span>
+                                      </span>
+                                    </a>
+                                    <!-- /dropdown link -->
+
+                                    <!-- Dropdown Option -->
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="dt-avatar-wrapper flex-nowrap p-6 mt-n2 bg-gradient-purple text-white rounded-top">
+                                            <img class="dt-avatar" src="/assets/images/user-avatar/domnic-harris.jpg" alt="Pankaj Tanwar">
+                                            <span class="dt-avatar-info">
+                                              <span class="dt-avatar-name">Pankaj</span>
+                                              <span class="f-12">Employee</span>
+                                            </span>
+                                        </div>
+                                        <a class="dropdown-item" href="javascript:void(0)"> <i class="icon icon-user icon-fw mr-2 mr-sm-1"></i>Account
+                                        </a> <a class="dropdown-item" href="javascript:void(0)">
+                                        <i class="icon icon-settings icon-fw mr-2 mr-sm-1"></i>Settings </a>
+                                        <a class="dropdown-item" href="#" ng-click="main.logout();"> <i class="icon icon-editors icon-fw mr-2 mr-sm-1"></i>Logout
+                                        </a>
+                                    </div>
+                                    <!-- /dropdown option -->
+                                </li>
+                            </ul>
+                            <!-- /header menu -->
+                        </div>
+                        <!-- Header Menu Wrapper -->
+                    </div>
+                    <!-- /header toolbar -->
+                </div>
+                <!-- /header container -->
+            </header>
+            <!-- /header -->
+            <!-- Site Main -->
+            <main class="dt-main">
+                <!-- Sidebar -->
+                <aside id="main-sidebar" class="dt-sidebar">
+                    <div class="dt-sidebar__container">
+
+                        <!-- Sidebar Navigation -->
+                        <ul class="dt-side-nav">
+
+                            <div ng-show="!main.isLoggedIn">
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Authentication</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/login" class="dt-side-nav__link" title="Metrics">
+                                        <i class="icon icon-login icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Login</span>
+                                    </a>
+                                </li>
+                                <li class="dt-side-nav__item">
+                                    <a href="/register" class="dt-side-nav__link" title="Layouts">
+                                        <i class="icon icon-user-account icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Register </span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+                            </div>
+
+                            <div ng-show="main.isLoggedIn && !main.authorized">
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Courses</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/courses" class="dt-side-nav__link" title="Metrics">
+                                        <i class="icon icon-graduation icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Courses</span>
+                                    </a>
+                                </li>
+                                <li class="dt-side-nav__item">
+                                    <a href="/request-course" class="dt-side-nav__link" title="Layouts">
+                                        <i class="icon icon-folder-o icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Request New Course</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Workshops</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/workshops" class="dt-side-nav__link" title="Task Manager">
+                                        <i class="icon icon-components icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Workshops</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Work Station</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/work-station" class="dt-side-nav__link" title="Task Manager">
+                                        <i class="icon icon-user icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Work Station</span>
+                                    </a>
+                                </li>
+                            </div>
+
+                            <div ng-show="main.isLoggedIn && main.authorized">
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Courses Management</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/manage-courses" class="dt-side-nav__link" title="Metrics">
+                                        <i class="icon icon-graduation icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Manage Courses</span>
+                                    </a>
+                                </li>
+                                <li class="dt-side-nav__item">
+                                    <a href="/add-new-course" class="dt-side-nav__link" title="Layouts">
+                                        <i class="icon icon-circle-add-o icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Add New Course</span>
+                                    </a>
+                                </li>
+                                <li class="dt-side-nav__item">
+                                    <a href="/new-course-requests" class="dt-side-nav__link" title="Layouts">
+                                        <i class="icon icon-metrics icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">New Course Requests</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Category Management</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/manage-category" class="dt-side-nav__link" title="Metrics">
+                                        <i class="icon icon-tag icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Manage Category</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Workshops Management</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/manage-workshops" class="dt-side-nav__link" title="Task Manager">
+                                        <i class="icon icon-components icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Manage Workshops</span>
+                                    </a>
+                                </li>
+                                <li class="dt-side-nav__item">
+                                    <a href="/add-new-workshop" class="dt-side-nav__link" title="Task Manager">
+                                        <i class="icon icon-circle-add-o icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Add New Workshop</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+
+                                <!-- Menu Header -->
+                                <li class="dt-side-nav__item dt-side-nav__header">
+                                    <span class="dt-side-nav__text">Users Management</span>
+                                </li>
+                                <!-- /menu header -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
+                                    <a href="/manage-users" class="dt-side-nav__link" title="Task Manager">
+                                        <i class="icon icon-users icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Manage Users</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+                            </div>
+                        </ul>
+                        <!-- /sidebar navigation -->
+
+                    </div>
+
+
+                </aside>
+                <!-- /sidebar -->
+                <!-- Site Content Wrapper -->
+                <div class="dt-content-wrapper">
+
+                    <!-- Site Content -->
+                    <div class="dt-content">
+
+                        <div ng-show="main.home">
+                            <!-- Page Header -->
+                            <div class="dt-page__header">
+                                <h1 class="dt-page__title">Dashboard</h1>
+                            </div>
+                        </div>
+
+                        <div ng-show="!main.home">
+                            <div class="ng-view" autoscroll="true"></div>
+                        </div>
+                        <!-- /page header -->
+                    </div>
+                    <!-- /site content -->
+
+                    <!-- Footer -->
+                    <footer class="dt-footer">
+                        Copyright Acceleration Programs © 2019
+                    </footer>
+                    <!-- /footer -->
+                </div>
+                <!-- /site content wrapper -->
+            </main>
+        </div>
+    </div>
+    <!-- /root -->
+
+    <!-- Optional JavaScript -->
+    <script src="/assets/modules/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/modules/moment/moment.js"></script>
+    <script src="/assets/modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Perfect Scrollbar jQuery -->
+    <script src="/assets/modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <!-- /perfect scrollbar jQuery -->
+
+    <!-- masonry script -->
+    <script src="/assets/modules/masonry-layout/dist/masonry.pkgd.min.js"></script>
+    <script src="/assets/modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="/assets/js/functions.js"></script>
+    <script src="/assets/js/customizer.js"></script>
+    <script src="/assets/js/custom/notification-alert.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/assets/modules/chartist/dist/chartist.min.js"></script>
+    <script src="/assets/modules//owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/custom/charts/dashboard-listing.js"></script>
+</body>
+
+</html>

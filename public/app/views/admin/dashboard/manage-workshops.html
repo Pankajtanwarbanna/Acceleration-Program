@@ -1,0 +1,101 @@
+<h1>Manage Workshop</h1>
+
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-xl-12" ng-repeat="workshop in workshopManagement.workshops">
+
+        <!-- Card -->
+        <div class="card horizontal">
+
+            <!-- Slider -->
+            <div class="dt-slider">
+
+                <!-- Slider Header -->
+                <div class="dt-slider__header">
+
+                    <span class="badge bg-orange text-white text-uppercase">Workshop</span>
+
+                    <!-- Checkbox -->
+                    <div class="dt-checkbox dt-checkbox-icon dt-checkbox-only">
+                        <input id="checkbox-1" type="checkbox" checked>
+                        <label class="font-weight-light dt-checkbox-content" for="checkbox-1">
+                                                <span class="unchecked"><i
+                                                        class="icon icon-heart-o text-white"></i></span>
+                            <span class="checked"><i class="icon icon-heart text-white"></i></span>
+                        </label>
+                    </div>
+                    <!-- /checkbox -->
+                </div>
+                <!-- /slider header -->
+
+                <img class="img-fluid" src="/assets/uploads/{{ workshop.poster }}" alt="Workshop">
+
+
+            </div>
+            <!-- /slider -->
+
+            <!-- Card Stacked -->
+            <div class="card-stacked">
+
+                <!-- Card Body -->
+                <div class="card-body">
+
+                    <!-- Badges -->
+                    <span class="badge badge-secondary text-uppercase mb-2">{{ workshop.category }} Category</span>
+                    <!-- /badges -->
+
+                    <!-- Card Title-->
+                    <h3 class="card-title text-truncate text-uppercase">{{ workshop.title }}</h3>
+                    <!-- Card Title-->
+
+                    <!-- Card Sub Title-->
+                    <h5 class="card-subtitle"><i class="icon icon-location icon-fw"></i> {{ workshop.venue }}</h5>
+                    <!-- /card sub title-->
+
+                    <!-- Content Area -->
+                    <p class="card-text text-truncate">
+                        {{ workshop.description }}
+                    </p>
+
+                    <span class="min-w-150 d-inline-block border-top mb-2"></span>
+
+                    <div class="d-flex flex-wrap mb-4">
+                        <div class="pr-3">Presenter : <span class="text-dark">{{ workshop.presenter }}</span></div>
+                    </div>
+                    <!-- /content area -->
+
+                    <div>
+                        <span class="d-inline-block mr-3"><i class="icon icon-user icon-fw"></i> Posted by Admin</span>
+                        <span class="d-inline-block"><i class="icon icon-calendar icon-fw"></i> Just Now</span>
+                    </div>
+
+                </div>
+                <!-- /card body -->
+
+                <!-- Card Footer -->
+                <div class="card-footer d-flex flex-column justify-content-between">
+                    <!-- Pricing -->
+                    <div class="price mb-6">
+                        <span class="d-block text-orange font-weight-500 display-5">{{ workshop.time_date | date: 'd MMM y' }}</span>
+                        <span class="d-inline-block text-light-gray f-12">{{ workshop.time_date | date : 'h:mm a'}}</span>
+                    </div>
+                    <!-- /pricing -->
+
+                    <!-- Card Button -->
+                    <a href="/editWorkshop/{{ workshop._id }}" class="btn btn-primary text-uppercase"><i class="icon icon-editors icon-fw"></i> Edit </a>
+                    <!-- /card button -->
+                </div>
+                <!-- /card footer -->
+
+            </div>
+            <!-- /card stacked -->
+
+        </div>
+        <!-- /card -->
+
+    </div>
+    <!-- /grid item -->
+
+</div>
+
