@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3eba260-be37-4a0a-8b5c-74e5da2deaf3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/app/views/admin/dashboard/manage-courses.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/app/views/admin/dashboard/manage-courses.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app/views/users/dashboard/courses.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/app/views/users/dashboard/courses.html" afterDir="false" />
-    </list>
+    <list default="true" id="a3eba260-be37-4a0a-8b5c-74e5da2deaf3" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -74,15 +71,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/controllers/userCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="393">
@@ -94,11 +82,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/views/admin/dashboard/manage-courses.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="302">
               <caret line="56" column="98" selection-start-line="56" selection-start-column="98" selection-end-line="56" selection-end-column="98" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/app/views/admin/dashboard/manage-users.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="27" selection-start-column="27" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -187,6 +184,7 @@
         <option value="$PROJECT_DIR$/public/app/views/index.html" />
         <option value="$PROJECT_DIR$/public/app/views/users/dashboard/courses.html" />
         <option value="$PROJECT_DIR$/public/app/views/admin/dashboard/manage-courses.html" />
+        <option value="$PROJECT_DIR$/public/app/views/admin/dashboard/manage-users.html" />
       </list>
     </option>
   </component>
@@ -358,12 +356,12 @@
       <option name="presentableId" value="Default" />
       <updated>1574591989366</updated>
       <workItem from="1574591990896" duration="25262000" />
-      <workItem from="1574657628401" duration="17512000" />
+      <workItem from="1574657628401" duration="18121000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42774000" />
+    <option name="totallyTimeSpent" value="43383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -638,6 +636,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="56" column="98" selection-start-line="56" selection-start-column="98" selection-end-line="56" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/views/admin/dashboard/manage-users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
         </state>
       </provider>
     </entry>

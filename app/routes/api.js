@@ -499,6 +499,22 @@ module.exports = function (router){
         }
     });
 
+    router.get('/getCategories', function (req, res) {
+        Category.find({ }, function (err, categories) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    categories : categories
+                })
+            }
+        })
+    });
+
     // Middleware to verify token
     router.use(function (req,res,next) {
 
@@ -593,22 +609,6 @@ module.exports = function (router){
                     }
                 }
             })
-        })
-    });
-
-    router.get('/getCategories', function (req, res) {
-        Category.find({ }, function (err, categories) {
-            if(err) {
-                res.json({
-                    success : false,
-                    message : 'Something went wrong!'
-                })
-            } else {
-                res.json({
-                    success : true,
-                    categories : categories
-                })
-            }
         })
     });
 
