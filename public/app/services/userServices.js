@@ -106,5 +106,10 @@ angular.module('userServices',[])
         return $http.post('/api/postNewCourseRequest', courseRequetData);
     };
 
+    // update user details
+    userFactory.updateProfile = function (profileData) {
+        return $http.post('/api/updateProfile', profileData);
+    }
+
     return userFactory;
 });

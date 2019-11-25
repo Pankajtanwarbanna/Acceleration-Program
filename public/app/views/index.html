@@ -81,8 +81,8 @@
 
                         <!-- Brand logo -->
                         <span class="dt-brand__logo">
-                            <a class="dt-brand__logo-link" href="#">
-                              <img class="dt-brand__logo-img d-none d-sm-inline-block" src="/assets/images/logo-main.jpg" alt="Drift">
+                            <a class="dt-brand__logo-link" href="https://mahaanews.com/" target="_blank">
+                              <img class="dt-brand__logo-img d-none d-sm-inline-block" src="/assets/images/logo-main.jpg" alt="MahaaNews">
                             </a>
                           </span>
                         <!-- /brand logo -->
@@ -142,9 +142,8 @@
 
                                     <!-- Dropdown Option -->
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="javascript:void(0)"> <i class="icon icon-user icon-fw mr-2 mr-sm-1"></i>Account
-                                        </a> <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="icon icon-settings icon-fw mr-2 mr-sm-1"></i>Settings </a>
+                                        <a class="dropdown-item" href="/settings">
+                                        <i class="icon icon-settings icon-fw mr-2 mr-sm-1"></i>Account Settings </a>
                                         <a class="dropdown-item" href="#" ng-click="main.logout();"> <i class="icon icon-logout icon-fw mr-2 mr-sm-1"></i>Logout
                                         </a>
                                     </div>
@@ -168,6 +167,20 @@
 
                         <!-- Sidebar Navigation -->
                         <ul class="dt-side-nav">
+
+                            <!-- Menu Header -->
+                            <li class="dt-side-nav__item dt-side-nav__header">
+                                <span class="dt-side-nav__text">Home Page</span>
+                            </li>
+                            <!-- /menu header -->
+
+                            <!-- Menu Item -->
+                            <li class="dt-side-nav__item">
+                                <a href="/" class="dt-side-nav__link" title="Metrics">
+                                    <i class="icon icon-home icon-fw icon-lg"></i>
+                                    <span class="dt-side-nav__text">Home</span>
+                                </a>
+                            </li>
 
                             <div ng-show="!main.isLoggedIn">
                                 <!-- Menu Header -->
@@ -337,11 +350,214 @@
                     <!-- Site Content -->
                     <div class="dt-content">
 
-                        <div ng-show="main.home">
-                            <!-- Page Header -->
-                            <div class="dt-page__header">
-                                <h1 class="dt-page__title">Dashboard</h1>
+                        <div ng-show="main.home && main.isLoggedIn">
+                            <!-- Profile -->
+                            <div class="profile">
+
+                                <!-- Profile Banner -->
+                                <div class="profile__banner">
+
+                                    <!-- Profile Banner Top -->
+                                    <div class="profile__banner-detail">
+                                        <!-- Avatar Wrapper -->
+                                        <div class="dt-avatar-wrapper">
+                                            <!-- Avatar -->
+                                            <img class="dt-avatar dt-avatar__shadow size-90 mr-sm-4"
+                                                 src="assets/images/user-avatar/domnic-harris.jpg" alt="Reece Jacklin">
+                                            <!-- /avatar -->
+
+                                            <!-- Info -->
+                                            <div class="dt-avatar-info">
+                                                <span class="dt-avatar-name display-4 mb-2 font-weight-light">{{ main.name }}</span>
+                                                <span class="f-16">{{ main.branch}}, India</span>
+                                            </div>
+                                            <!-- /info -->
+                                        </div>
+                                        <!-- /avatar wrapper -->
+                                    </div>
+                                    <!-- /profile banner top -->
+
+                                </div>
+                                <!-- /profile banner -->
+
+                                <!-- Profile Content -->
+                                <div class="profile-content">
+
+                                    <!-- Grid -->
+                                    <div class="row">
+
+                                        <!-- Grid Item -->
+                                        <div class="col-xl-4 order-xl-2">
+
+
+                                            <!-- Grid -->
+                                            <div class="row">
+                                                <!-- /grid item -->
+
+                                                <!-- Grid Item -->
+                                                <div class="col-xl-12 col-md-6 col-12 order-xl-1">
+
+                                                    <!-- Card -->
+                                                    <div class="dt-card dt-card__full-height">
+
+                                                        <!-- Card Header -->
+                                                        <div class="dt-card__header pt-6">
+
+                                                            <!-- Card Heading -->
+                                                            <div class="dt-card__heading">
+                                                                <h3 class="dt-card__title">Contact</h3>
+                                                            </div>
+                                                            <!-- /card heading -->
+
+                                                        </div>
+                                                        <!-- /card header -->
+
+                                                        <!-- Card Body -->
+                                                        <div class="dt-card__body">
+                                                            <!-- Media -->
+                                                            <div class="media mb-5">
+
+                                                                <i class="icon icon-mail icon-xl mr-5"></i>
+
+                                                                <!-- Media Body -->
+                                                                <div class="media-body">
+                                                                    <span class="d-block text-light-gray f-12 mb-1">Mail</span>
+                                                                    <a href="javascript:void(0)">{{ main.email }}</a>
+                                                                </div>
+                                                                <!-- /media body -->
+
+                                                            </div>
+                                                            <!-- /media -->
+
+                                                            <!-- Media -->
+                                                            <div class="media mb-5">
+
+                                                                <i class="icon icon-link icon-xl mr-5"></i>
+
+                                                                <!-- Media Body -->
+                                                                <div class="media-body">
+                                                                    <span class="d-block text-light-gray f-12 mb-1">Username</span>
+                                                                    <a href="javascript:void(0)">{{ main.username }} </a>
+                                                                </div>
+                                                                <!-- /media body -->
+
+                                                            </div>
+                                                            <!-- /media -->
+
+                                                            <!-- Media -->
+                                                            <div class="media">
+
+                                                                <i class="icon icon-phone-o icon-xl mr-5"></i>
+
+                                                                <!-- Media Body -->
+                                                                <div class="media-body">
+                                                                    <span class="d-block text-light-gray f-12 mb-1">Branch</span>
+                                                                    <span class="h5">{{ main.branch }}</span>
+                                                                </div>
+                                                                <!-- /media body -->
+
+                                                            </div>
+                                                            <!-- /media -->
+                                                        </div>
+                                                        <!-- /card body -->
+
+                                                    </div>
+                                                    <!-- /card -->
+
+                                                </div>
+                                                <!-- /grid item -->
+
+                                            </div>
+                                            <!-- /grid -->
+
+                                        </div>
+                                        <!-- /grid item -->
+
+                                        <!-- Grid Item -->
+                                        <div class="col-xl-8 order-xl-1">
+
+                                            <!-- Card -->
+                                            <div class="card">
+
+                                                <!-- Card Header -->
+                                                <div class="card-header card-nav bg-transparent border-bottom d-sm-flex justify-content-sm-between">
+                                                    <h3 class="mb-2 mb-sm-n5">About you ..</h3>
+                                                </div>
+                                                <!-- /card header -->
+
+                                                <!-- Card Body -->
+                                                <div class="card-body pb-2">
+
+                                                    <!-- Tab Content-->
+                                                    <div class="tab-content mt-5">
+
+                                                        <!-- Tab panel -->
+                                                        <div id="tab-pane1" class="tab-pane active">
+
+                                                            <!-- List -->
+                                                            <ul class="dt-list dt-list-col-4">
+                                                                <!-- List Item -->
+                                                                <li class="dt-list__item">
+                                                                    <!-- Media -->
+                                                                    <div class="media">
+
+                                                                        <i class="icon icon-company icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                                        <!-- Media Body -->
+                                                                        <div class="media-body">
+                                                                            <span class="d-block text-light-gray f-12 mb-1">Works at</span>
+                                                                            <p class="h5 mb-0">{{ main.branch }} Branch</p>
+                                                                        </div>
+                                                                        <!-- /media body -->
+
+                                                                    </div>
+                                                                    <!-- /media -->
+                                                                </li>
+                                                                <!-- /list item -->
+
+                                                                <!-- List Item -->
+                                                                <li class="dt-list__item">
+                                                                    <!-- Media -->
+                                                                    <div class="media">
+
+                                                                        <i class="icon icon-graduation icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                                        <!-- Media Body -->
+                                                                        <div class="media-body">
+                                                                            <span class="d-block text-light-gray f-12 mb-1">Position of </span>
+                                                                            <p class="h5 mb-0">{{ main.position }}</p>
+                                                                        </div>
+                                                                        <!-- /media body -->
+
+                                                                    </div>
+                                                                    <!-- /media -->
+                                                                </li>
+                                                                <!-- /list item -->
+                                                            </ul>
+                                                            <!-- /list -->
+
+                                                        </div>
+                                                        <!-- /tab panel -->
+                                                    </div>
+                                                    <!-- /tab content-->
+
+                                                </div>
+                                                <!-- /card body -->
+
+                                            </div>
+                                            <!-- /card -->
+
+                                        </div>
+                                        <!-- /grid item -->
+
+                                    </div>
+                                    <!-- /grid -->
+
+                                </div>
+                                <!-- /profile content -->
+
                             </div>
+                            <!-- /profile -->
                         </div>
 
                         <div ng-show="!main.home">

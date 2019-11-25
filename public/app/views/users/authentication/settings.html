@@ -1,0 +1,76 @@
+<!-- Page Header -->
+<div class="dt-page__header">
+    <h1 class="dt-page__title">Account Settings</h1>
+</div>
+
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-12">
+
+        <!-- Card -->
+        <div class="dt-card">
+
+            <!-- Card Body -->
+            <div class="dt-card__body">
+
+                <!-- Form -->
+                <form ng-submit="settings.updateProfile(main);" class="mb-6">
+                    <div class="form-row">
+                        <div class="col-sm-4 mb-3">
+                            <label>Full Name  </label>
+                            <input class="form-control" type="text" name="name" placeholder="Enter your name" ng-model="main.name" required>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <label>Email </label>
+                            <input class="form-control" type="email" name="email" placeholder="Enter your email" ng-model="main.email" required>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <label>Username </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="First name" ng-model="main.username" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-6 mb-3">
+                            <label>Select Position :</label>
+                            <select class="form-control" id="simple-select" ng-model="main.position" required>
+                                <option value="">-- Select your position --</option>
+                                <option ng-repeat="category in main.categories" value="{{ category.category }}">{{ category.category }}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label>Branch / Location : </label>
+                            <input class="form-control" type="text" name="branch" placeholder="Enter your branch/location" ng-model="main.branch" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Update Now</button>
+                </form>
+
+
+                <div class="row show-hide-message">
+                    <div class="alert alert-success" ng-show="settings.successMsg">
+                        <strong> Success! </strong> {{ settings.successMsg }}
+                    </div>
+                </div>
+
+
+                <div class="row show-hide-message">
+                    <div class="alert alert-danger" ng-show="settings.errorMsg">
+                        <strong> Oops! </strong>{{ settings.errorMsg }}
+                    </div>
+                </div>
+
+            </div>
+            <!-- /card body -->
+
+        </div>
+        <!-- /card -->
+    </div>
+    <!-- /grid item -->
+</div>
+<!-- /grid -->
+

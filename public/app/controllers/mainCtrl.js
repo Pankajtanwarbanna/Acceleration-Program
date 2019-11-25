@@ -30,6 +30,9 @@ angular.module('mainController', ['authServices'])
                 app.name = data.data.name;
                 app.email = data.data.email;
                 app.username = data.data.username;
+                app.branch = data.data.branch;
+                app.position = data.data.position;
+                app.userID = data.data._id;
                 user.getPermission().then(function (data) {
                     if(data.data.permission === 'admin') {
                         app.authorized = true;

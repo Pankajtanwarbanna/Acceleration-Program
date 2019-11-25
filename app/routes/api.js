@@ -550,7 +550,7 @@ module.exports = function (router){
 
         //console.log(req.decoded.email);
         // getting profile of user from database using email, saved in the token in localStorage
-        User.findOne({ email : req.decoded.email }).select('email username name').exec(function (err, user) {
+        User.findOne({ email : req.decoded.email }).select('_id email username name address position branch').exec(function (err, user) {
             if(err) throw err;
 
             if(!user) {
@@ -749,8 +749,24 @@ module.exports = function (router){
                 })
             }
         })
+    });
 
-    })
+    // update user details
+    router.post('/updateProfile', function (req, res) {
+        User.findByIdAndUpdate({ _id : req.body.userID }, req.body, function (err) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    message : 'Profile successfully updated.'
+                })
+            }
+        })
+    });
 
     return router;
 };

@@ -32,9 +32,6 @@ var userSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    address : {
-        type : String,
-    },
     active : {
         type : Boolean,
         required : true,

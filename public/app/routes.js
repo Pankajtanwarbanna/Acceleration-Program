@@ -50,6 +50,13 @@ var app = angular.module('userRoutes', ['ngRoute'])
                 controllerAs : 'reset'
             })
 
+            .when('/settings', {
+                templateUrl : 'app/views/users/authentication/settings.html',
+                authenticated : true,
+                controller : 'settingsCtrl',
+                controllerAs : 'settings'
+            })
+
             // User Dashboard
             .when('/courses', {
                 templateUrl : '/app/views/users/dashboard/courses.html',

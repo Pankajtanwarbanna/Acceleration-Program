@@ -118,6 +118,32 @@ angular.module('userCtrl',['userServices'])
             }
         });
     }
+})
 
+.controller('settingsCtrl', function (user, $timeout) {
 
+    var app = this;
+
+    app.profileData = {};
+
+    app.updateProfile = function (mainData) {
+        app.profileData.name = mainData.name;
+        app.profileData.email = mainData.email;
+        app.profileData.username = mainData.username;
+        app.profileData.branch = mainData.branch;
+        app.profileData.position = mainData.position;
+        app.profileData.userID = mainData.userID;
+        console.log(app.profileData);
+        user.updateProfile(app.profileData).then(function (data) {
+            if(data.data.success) {
+                app.successMsg = data.data.message;
+                $timeout(function () {
+                    app.successMsg = '';
+                }, 2000);
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        })
+
+    }
 });
