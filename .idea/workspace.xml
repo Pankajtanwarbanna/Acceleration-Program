@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3eba260-be37-4a0a-8b5c-74e5da2deaf3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app/controllers/userCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/app/controllers/userCtrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/app/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/app/views/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/app/views/users/dashboard/course-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/app/views/users/dashboard/course-page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
@@ -30,13 +29,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/app/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1368">
-              <caret line="72" column="189" selection-start-line="72" selection-start-column="189" selection-end-line="72" selection-end-column="189" />
+            <state relative-caret-position="296">
+              <caret line="208" column="79" selection-start-line="208" selection-start-column="79" selection-end-line="208" selection-end-column="79" />
               <folding>
-                <element signature="n#style#0;n#form#0;n#div#1;n#div#0;n#header#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#0;n#header#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,7 +45,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/views/users/authentication/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
+            <state relative-caret-position="456">
               <caret line="45" column="22" selection-start-line="26" selection-start-column="16" selection-end-line="45" selection-end-column="22" />
             </state>
           </provider>
@@ -84,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="174">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -99,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/views/users/dashboard/course-page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+            <state relative-caret-position="168">
+              <caret line="55" column="142" selection-start-line="55" selection-start-column="142" selection-end-line="55" selection-end-column="142" />
             </state>
           </provider>
         </entry>
@@ -215,10 +215,10 @@
         <option value="$PROJECT_DIR$/public/app/controllers/managementCtrl.js" />
         <option value="$PROJECT_DIR$/public/app/routes.js" />
         <option value="$PROJECT_DIR$/public/app/controllers/mainCtrl.js" />
-        <option value="$PROJECT_DIR$/public/app/views/index.html" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/public/app/controllers/userCtrl.js" />
+        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/public/app/views/users/dashboard/course-page.html" />
+        <option value="$PROJECT_DIR$/public/app/views/index.html" />
       </list>
     </option>
   </component>
@@ -392,12 +392,12 @@
       <workItem from="1574591990896" duration="25262000" />
       <workItem from="1574657628401" duration="32429000" />
       <workItem from="1574760911764" duration="16327000" />
-      <workItem from="1574788283379" duration="1011000" />
+      <workItem from="1574788283379" duration="1830000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75029000" />
+    <option name="totallyTimeSpent" value="75848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -669,23 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="72" column="189" selection-start-line="72" selection-start-column="189" selection-end-line="72" selection-end-column="189" />
-          <folding>
-            <element signature="n#style#0;n#form#0;n#div#1;n#div#0;n#header#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/views/users/authentication/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="45" column="22" selection-start-line="26" selection-start-column="16" selection-end-line="45" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/routes/adminApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2375">
@@ -717,13 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/app/controllers/userCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -734,10 +710,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/app/views/users/dashboard/course-page.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+        <state relative-caret-position="168">
+          <caret line="55" column="142" selection-start-line="55" selection-start-column="142" selection-end-line="55" selection-end-column="142" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/views/users/authentication/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="45" column="22" selection-start-line="26" selection-start-column="16" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/views/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="208" column="79" selection-start-line="208" selection-start-column="79" selection-end-line="208" selection-end-column="79" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#0;n#header#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
