@@ -3,10 +3,10 @@ var app = angular.module('userRoutes', ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
 
-            .when('/login', {
+            /*.when('/login', {
                 templateUrl : '/app/views/users/authentication/login.html',
                 authenticated : false
-            })
+            })*/
 
             .when('/logout', {
                 templateUrl : '/app/views/users/authentication/logout.html',

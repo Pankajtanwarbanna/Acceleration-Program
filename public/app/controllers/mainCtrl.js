@@ -21,7 +21,6 @@ angular.module('mainController', ['authServices'])
             app.home = true;
         }
 
-
         if(auth.isLoggedIn()) {
 
             app.isLoggedIn = true;
@@ -72,7 +71,7 @@ angular.module('mainController', ['authServices'])
                 app.loading = false;
                 app.successMsg = data.data.message + ' Redirecting to home page...';
                 $timeout(function () {
-                    $location.path('/');
+                    $location.path('/settings');
                     app.logData = '';
                     app.successMsg = false;
                 }, 2000);
@@ -97,7 +96,7 @@ angular.module('mainController', ['authServices'])
         $location.path('/logout');
         $timeout(function () {
             $location.path('/');
-        }, 2000);
+        }, 1000);
     };
 
     user.getCategories().then(function (data) {
