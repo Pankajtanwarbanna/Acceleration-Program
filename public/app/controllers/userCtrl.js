@@ -71,6 +71,7 @@ angular.module('userCtrl',['userServices','fileModelDirective','uploadFileServic
         if(data.data.success) {
             app.course = data.data.course;
             app.course.course_url = $sce.trustAsResourceUrl(app.course.course_url)
+            app.course.course_file_url = $sce.trustAsResourceUrl(app.course.course_file_url)
         }
     })
 })
