@@ -8,6 +8,42 @@
     <div class="col-12">
 
         <!-- Card -->
+        <div class="dt-card text-center">
+
+            <!-- Card Body -->
+            <div class="dt-card__body">
+                <!-- Avatar -->
+                <img class="dt-avatar dt-avatar__shadow size-90 mr-sm-4 mb-6" src="/assets/uploads/{{ main.profile_url }}" alt="User Profile Picture">
+                <!-- /avatar -->
+
+                <br>
+                <!-- Info -->
+                <div class="dt-avatar-info">
+
+                    <form ng-submit="settings.updateProfilePicture()" ng-show="!settings.profilePictureUpdateSuccessMsg">
+                        <input type="file" file-model="file.thumbnail" name="thumbnail" required>
+                        <button type="submit" class="btn btn-outline-success">Update Profile Pic</button>
+                    </form>
+
+                    <div class="row show-hide-message">
+                        <div class="alert alert-success" ng-show="settings.profilePictureUpdateSuccessMsg">
+                            <strong> Success! </strong> {{ settings.profilePictureUpdateSuccessMsg }}
+                        </div>
+                    </div>
+
+
+                    <div class="row show-hide-message">
+                        <div class="alert alert-danger" ng-show="settings.profilePictureUpdateErrorMsg">
+                            <strong> Oops! </strong>{{ settings.profilePictureUpdateErrorMsg }}
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /info -->
+            </div>
+        </div>
+
+        <!-- Card -->
         <div class="dt-card">
 
             <!-- Card Body -->
@@ -45,6 +81,12 @@
                         <div class="col-sm-6 mb-3">
                             <label>Branch / Location : </label>
                             <input class="form-control" type="text" name="branch" placeholder="Enter your branch/location" ng-model="main.branch" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Address : </label>
+                            <input class="form-control" type="text" name="address" placeholder="Enter your address" ng-model="main.address" required>
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">Update Now</button>

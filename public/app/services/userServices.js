@@ -109,7 +109,13 @@ angular.module('userServices',[])
     // update user details
     userFactory.updateProfile = function (profileData) {
         return $http.post('/api/updateProfile', profileData);
-    }
+    };
+
+    // update profile picture
+    userFactory.updateProfilePictureURL = function (profilePictureData) {
+        console.log(profilePictureData);
+        return $http.post('/api/updateProfilePictureURL', profilePictureData);
+    };
 
     return userFactory;
 });

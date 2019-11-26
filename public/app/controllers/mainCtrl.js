@@ -33,6 +33,8 @@ angular.module('mainController', ['authServices'])
                 app.branch = data.data.branch;
                 app.position = data.data.position;
                 app.userID = data.data._id;
+                app.address = data.data.address;
+                app.profile_url = data.data.profile_url;
                 user.getPermission().then(function (data) {
                     if(data.data.permission === 'admin') {
                         app.authorized = true;
@@ -51,7 +53,6 @@ angular.module('mainController', ['authServices'])
 
             app.loadme = true;
         }
-
     });
 
 

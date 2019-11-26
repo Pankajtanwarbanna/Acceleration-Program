@@ -1,7 +1,7 @@
 /*
     Controller written by - Pankaj tanwar
 */
-angular.module('managementController', ['adminServices'])
+angular.module('managementController', ['adminServices','fileModelDirective','uploadFileService'])
     
 .controller('manageCategoryCtrl', function (admin) {
     var app = this;
@@ -47,7 +47,7 @@ angular.module('managementController', ['adminServices'])
     }
 })
 
-.controller('courseManagementCtrl', function (admin, $routeParams, $timeout) {
+.controller('courseManagementCtrl', function (admin, $routeParams, $timeout,$scope,uploadFile) {
 
     let app = this;
 
@@ -67,15 +67,35 @@ angular.module('managementController', ['adminServices'])
 
     app.addNewCourse = function (courseData) {
         app.addNewCourseLoading = true;
-        admin.addNewCourse(app.courseData).then(function (data) {
-            if(data.data.success) {
-                app.addNewCourseSuccessMsg = data.data.message;
-                app.addNewCourseLoading = false;
-            } else {
-                app.addNewCourseErrorMsg = data.data.message;
-                app.addNewCourseLoading = false;
-            }
-        });
+
+        if($scope.file) {
+            uploadFile.uploadImage($scope.file).then(function (data) {
+                if(data.data.success) {
+                    app.courseData.poster = data.data.filename;
+                    admin.addNewCourse(app.courseData).then(function (data) {
+                        if(data.data.success) {
+                            app.addNewCourseSuccessMsg = data.data.message;
+                            app.addNewCourseLoading = false;
+                        } else {
+                            app.addNewCourseErrorMsg = data.data.message;
+                            app.addNewCourseLoading = false;
+                        }
+                    });
+                } else {
+                    app.editCourseErrorMsg = data.data.message;
+                }
+            });
+        } else {
+            admin.addNewCourse(app.courseData).then(function (data) {
+                if(data.data.success) {
+                    app.addNewCourseSuccessMsg = data.data.message;
+                    app.addNewCourseLoading = false;
+                } else {
+                    app.addNewCourseErrorMsg = data.data.message;
+                    app.addNewCourseLoading = false;
+                }
+            });
+        }
     };
 
     // get current course
@@ -89,22 +109,60 @@ angular.module('managementController', ['adminServices'])
     // edit course
     app.editCourse = function (courseData) {
         console.log(app.courseData);
-        admin.editCourse(app.courseData).then(function (data) {
+
+        if($scope.file) {
+            uploadFile.uploadImage($scope.file).then(function (data) {
+                if(data.data.success) {
+                    app.courseData.poster = data.data.filename;
+                    admin.editCourse(app.courseData).then(function (data) {
+                        console.log(data);
+                        if(data.data.success) {
+                            app.editCourseSuccessMsg = data.data.message;
+                            $timeout(function () {
+                                app.editCourseSuccessMsg = '';
+                            }, 2000)
+                        } else {
+                            app.editCourseErrorMsg = data.data.message;
+                        }
+                    })
+                } else {
+                    app.editCourseErrorMsg = data.data.message;
+                }
+            });
+        } else {
+            admin.editCourse(app.courseData).then(function (data) {
+                console.log(data);
+                if(data.data.success) {
+                    app.editCourseSuccessMsg = data.data.message;
+                    $timeout(function () {
+                        app.editCourseSuccessMsg = '';
+                    }, 2000)
+                } else {
+                    app.editCourseErrorMsg = data.data.message;
+                }
+            })
+        }
+    };
+
+    // remove course
+    app.removeCourse = function (courseID) {
+        admin.removeCourse(courseID).then(function (data) {
             console.log(data);
             if(data.data.success) {
-                app.editCourseSuccessMsg = data.data.message;
+                app.removeCourseSuccessMsg = data.data.message;
+                getAllCourses();
                 $timeout(function () {
-                    app.editCourseSuccessMsg = '';
-                }, 2000)
+                    app.removeCourseSuccessMsg = '';
+                }, 3000);
             } else {
-                app.editCourseErrorMsg = data.data.message;
+                app.removeCourseErrorMsg = data.data.message;
             }
         })
     }
 })
 
 
-.controller('workshopManagementCtrl', function (admin, $routeParams) {
+.controller('workshopManagementCtrl', function (admin, $routeParams, uploadFile,$scope) {
     var app = this;
 
     function getWorkshops() {
@@ -119,13 +177,32 @@ angular.module('managementController', ['adminServices'])
 
     // add new workshop
     app.addNewWorkshop = function (workshopData) {
-        admin.addNewWorkshop(app.workshopData).then(function (data) {
-            if(data.data.success) {
-                app.addNewWorkshopSuccessMsg = data.data.message;
-            } else {
-                app.addNewWorkshopErrorMsg = data.data.message;
-            }
-        })
+
+        if($scope.file) {
+            uploadFile.uploadImage($scope.file).then(function (data) {
+                console.log(data);
+                if(data.data.success) {
+                    app.workshopData.poster = data.data.filename;
+                    admin.addNewWorkshop(app.workshopData).then(function (data) {
+                        if(data.data.success) {
+                            app.addNewWorkshopSuccessMsg = data.data.message;
+                        } else {
+                            app.addNewWorkshopErrorMsg = data.data.message;
+                        }
+                    })
+                } else {
+                    app.addNewWorkshopErrorMsg = data.data.message;
+                }
+            });
+        } else {
+            admin.addNewWorkshop(app.workshopData).then(function (data) {
+                if(data.data.success) {
+                    app.addNewWorkshopSuccessMsg = data.data.message;
+                } else {
+                    app.addNewWorkshopErrorMsg = data.data.message;
+                }
+            })
+        }
     };
 
     // edit workshop
@@ -137,14 +214,34 @@ angular.module('managementController', ['adminServices'])
     });
 
     app.updateWorkshop = function (workshopData) {
-        admin.updateWorkshop(app.workshopData).then(function (data) {
-            console.log(data);
-            if(data.data.success) {
-                app.updateWorkshopSuccessMsg = data.data.message;
-            } else {
-                app.updateWorkshopErrorMsg = data.data.message;
-            }
-        })
+
+        if($scope.file) {
+            uploadFile.uploadImage($scope.file).then(function (data) {
+                if(data.data.success) {
+                    app.workshopData.poster = data.data.filename;
+
+                    admin.updateWorkshop(app.workshopData).then(function (data) {
+                        console.log(data);
+                        if(data.data.success) {
+                            app.updateWorkshopSuccessMsg = data.data.message;
+                        } else {
+                            app.updateWorkshopErrorMsg = data.data.message;
+                        }
+                    })
+                } else {
+                    app.updateWorkshopErrorMsg = data.data.message;
+                }
+            });
+        } else {
+            admin.updateWorkshop(app.workshopData).then(function (data) {
+                console.log(data);
+                if(data.data.success) {
+                    app.updateWorkshopSuccessMsg = data.data.message;
+                } else {
+                    app.updateWorkshopErrorMsg = data.data.message;
+                }
+            })
+        }
     }
 })
 

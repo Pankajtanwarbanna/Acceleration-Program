@@ -43,10 +43,14 @@
     <script src="/app/controllers/managementCtrl.js"></script>
     <script src="/app/controllers/emailCtrl.js"></script>
 
+    <!-- Angular Directives -->
+    <script src="app/directives/fileModel.js"></script>
+
     <!-- Angular Services -->
     <script src="/app/services/userServices.js"></script>
     <script src="/app/services/adminServices.js"></script>
     <script src="/app/services/authServices.js"></script>
+    <script src="app/services/uploadFileService.js"></script>
 
 </head>
 
@@ -98,42 +102,11 @@
 
                             <!-- Header Menu -->
                             <ul class="dt-nav">
-                                <li class="dt-nav__item dt-notification dropdown">
-
-                                    <!-- Dropdown Link -->
-                                    <a href="#" class="dt-nav__link dropdown-toggle no-arrow" data-toggle="dropdown"
-                                       aria-haspopup="true" aria-expanded="false"> <i class="icon icon-notification2 icon-fw dt-icon-alert"></i>
-                                    </a>
-                                    <!-- /dropdown link -->
-
-                                    <!-- Dropdown Option -->
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-media">
-                                        <!-- Dropdown Menu Header -->
-                                        <div class="dropdown-menu-header">
-                                            <h4 class="title">Notifications (0)</h4>
-
-                                            <div class="ml-auto action-area">
-                                                <a href="javascript:void(0)">No Notifications</a> <a class="ml-2" href="javascript:void(0)">
-                                                <i class="icon icon-notification icon-lg text-light-gray"></i> </a>
-                                            </div>
-                                        </div>
-                                        <!-- /dropdown menu header -->
-
-                                    </div>
-                                    <!-- /dropdown option -->
-
-                                </li>
-
-                            </ul>
-                            <!-- /header menu -->
-
-                            <!-- Header Menu -->
-                            <ul class="dt-nav">
                                 <li class="dt-nav__item dropdown">
                                     <!-- Dropdown Link -->
                                     <a href="#" class="dt-nav__link dropdown-toggle no-arrow dt-avatar-wrapper"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img class="dt-avatar size-30" src="/assets/images/user-avatar/domnic-harris.jpg" alt="Domnic Harris">
+                                        <img class="dt-avatar size-30" src="/assets/uploads/{{ main.profile_url }}" alt="User Profile Picture">
                                         <span class="dt-avatar-info d-none d-sm-block">
                                         <span class="dt-avatar-name">{{ main.name }}</span>
                                       </span>
@@ -196,13 +169,6 @@
                                         <span class="dt-side-nav__text">Login</span>
                                     </a>
                                 </li>
-                                <li class="dt-side-nav__item">
-                                    <a href="/register" class="dt-side-nav__link" title="Layouts">
-                                        <i class="icon icon-user-account icon-fw icon-lg"></i>
-                                        <span class="dt-side-nav__text">Register </span>
-                                    </a>
-                                </li>
-                                <!-- /menu item -->
                             </div>
 
                             <div ng-show="main.isLoggedIn && !main.authorized">
@@ -329,9 +295,18 @@
 
                                 <!-- Menu Item -->
                                 <li class="dt-side-nav__item">
+                                    <a href="/create-new-user" class="dt-side-nav__link" title="Task Manager">
+                                        <i class="icon icon-user-add icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Create User</span>
+                                    </a>
+                                </li>
+                                <!-- /menu item -->
+
+                                <!-- Menu Item -->
+                                <li class="dt-side-nav__item">
                                     <a href="/manage-users" class="dt-side-nav__link" title="Task Manager">
                                         <i class="icon icon-users icon-fw icon-lg"></i>
-                                        <span class="dt-side-nav__text">Manage Users</span>
+                                        <span class="dt-side-nav__text">Users</span>
                                     </a>
                                 </li>
                                 <!-- /menu item -->
@@ -363,7 +338,7 @@
                                         <div class="dt-avatar-wrapper">
                                             <!-- Avatar -->
                                             <img class="dt-avatar dt-avatar__shadow size-90 mr-sm-4"
-                                                 src="assets/images/user-avatar/domnic-harris.jpg" alt="Reece Jacklin">
+                                                 src="/assets/uploads/{{ main.profile_url }}" alt="User Profile Picture">
                                             <!-- /avatar -->
 
                                             <!-- Info -->
@@ -432,7 +407,7 @@
                                                             <!-- Media -->
                                                             <div class="media mb-5">
 
-                                                                <i class="icon icon-link icon-xl mr-5"></i>
+                                                                <i class="icon icon-user icon-xl mr-5"></i>
 
                                                                 <!-- Media Body -->
                                                                 <div class="media-body">
@@ -447,12 +422,12 @@
                                                             <!-- Media -->
                                                             <div class="media">
 
-                                                                <i class="icon icon-phone-o icon-xl mr-5"></i>
+                                                                <i class="icon icon-company icon-xl mr-5"></i>
 
                                                                 <!-- Media Body -->
                                                                 <div class="media-body">
                                                                     <span class="d-block text-light-gray f-12 mb-1">Branch</span>
-                                                                    <span class="h5">{{ main.branch }}</span>
+                                                                    <a href="javascript:void(0)">{{ main.branch }}</a>
                                                                 </div>
                                                                 <!-- /media body -->
 
@@ -481,7 +456,7 @@
 
                                                 <!-- Card Header -->
                                                 <div class="card-header card-nav bg-transparent border-bottom d-sm-flex justify-content-sm-between">
-                                                    <h3 class="mb-2 mb-sm-n5">About you ..</h3>
+                                                    <h3 class="mb-2 mb-sm-n5">Profile</h3>
                                                 </div>
                                                 <!-- /card header -->
 
@@ -524,8 +499,26 @@
 
                                                                         <!-- Media Body -->
                                                                         <div class="media-body">
-                                                                            <span class="d-block text-light-gray f-12 mb-1">Position of </span>
+                                                                            <span class="d-block text-light-gray f-12 mb-1">Position </span>
                                                                             <p class="h5 mb-0">{{ main.position }}</p>
+                                                                        </div>
+                                                                        <!-- /media body -->
+
+                                                                    </div>
+                                                                    <!-- /media -->
+                                                                </li>
+                                                                <!-- /list item -->
+                                                                <!-- List Item -->
+                                                                <li class="dt-list__item">
+                                                                    <!-- Media -->
+                                                                    <div class="media">
+
+                                                                        <i class="icon icon-home icon-4x mr-5 align-self-center text-yellow"></i>
+
+                                                                        <!-- Media Body -->
+                                                                        <div class="media-body">
+                                                                            <span class="d-block text-light-gray f-12 mb-1">Lives at</span>
+                                                                            <p class="h5 mb-0">{{ main.address }}</p>
                                                                         </div>
                                                                         <!-- /media body -->
 

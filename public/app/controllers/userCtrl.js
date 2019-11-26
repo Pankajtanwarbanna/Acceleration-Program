@@ -1,7 +1,7 @@
 /*
     Controller written by - Pankaj tanwar
 */
-angular.module('userCtrl',['userServices'])
+angular.module('userCtrl',['userServices','fileModelDirective','uploadFileService'])
 
 .controller('regCtrl', function ($scope, $http, $timeout, $location,user) {
 
@@ -18,11 +18,7 @@ angular.module('userCtrl',['userServices'])
             //console.log(data);
             if(data.data.success) {
                 app.loading = false;
-                app.successMsg = data.data.message + ' Redirecting to home page...';
-                $timeout(function () {
-                    $location.path('/');
-                }, 2000);
-                
+                app.successMsg = data.data.message;
             } else {
                 app.loading = false;
                 app.errorMsg = data.data.message;
@@ -79,7 +75,7 @@ angular.module('userCtrl',['userServices'])
     })
 })
 
-.controller('workstationCtrl', function (user) {
+.controller('workstationCtrl', function (user, $scope,uploadFile) {
     let app = this;
 
     function getMyWork() {
@@ -94,14 +90,34 @@ angular.module('userCtrl',['userServices'])
 
     // save work space
     app.saveMyWork = function (workData) {
-        user.saveMyWork(app.workData).then(function (data) {
-            if(data.data.success) {
-                app.workSavedSuccessMsg = data.data.message;
-                getMyWork();
-            } else {
-                app.workSavedErrorMsg = data.data.message;
-            }
-        })
+
+        if($scope.file) {
+            uploadFile.upload($scope.file).then(function (data) {
+                if(data.data.success) {
+                    app.workData.work_url = data.data.filename;
+
+                    user.saveMyWork(app.workData).then(function (data) {
+                        if(data.data.success) {
+                            app.workSavedSuccessMsg = data.data.message;
+                            getMyWork();
+                        } else {
+                            app.workSavedErrorMsg = data.data.message;
+                        }
+                    })
+                } else {
+                    app.workSavedErrorMsg = data.data.message;
+                }
+            })
+        } else {
+            user.saveMyWork(app.workData).then(function (data) {
+                if(data.data.success) {
+                    app.workSavedSuccessMsg = data.data.message;
+                    getMyWork();
+                } else {
+                    app.workSavedErrorMsg = data.data.message;
+                }
+            })
+        }
     }
 })
 
@@ -120,20 +136,21 @@ angular.module('userCtrl',['userServices'])
     }
 })
 
-.controller('settingsCtrl', function (user, $timeout) {
+.controller('settingsCtrl', function (user, $timeout, $scope,uploadFile) {
 
     var app = this;
 
     app.profileData = {};
 
+    // update profile
     app.updateProfile = function (mainData) {
         app.profileData.name = mainData.name;
         app.profileData.email = mainData.email;
         app.profileData.username = mainData.username;
         app.profileData.branch = mainData.branch;
         app.profileData.position = mainData.position;
+        app.profileData.address = mainData.address;
         app.profileData.userID = mainData.userID;
-        console.log(app.profileData);
         user.updateProfile(app.profileData).then(function (data) {
             if(data.data.success) {
                 app.successMsg = data.data.message;
@@ -144,6 +161,23 @@ angular.module('userCtrl',['userServices'])
                 app.errorMsg = data.data.message;
             }
         })
+    };
 
+    // profile picture update
+    app.updateProfilePicture = function () {
+        uploadFile.uploadImage($scope.file).then(function (data) {
+            if(data.data.success) {
+                let profilePicObj = {};
+                profilePicObj.filename = data.data.filename;
+                user.updateProfilePictureURL(profilePicObj).then(function (data) {
+                    console.log(data);
+                    if(data.data.success) {
+                        app.profilePictureUpdateSuccessMsg = data.data.message;
+                    } else {
+                        app.profilePictureUpdateErrorMsg = data.data.message;
+                    }
+                });
+            }
+        })
     }
 });

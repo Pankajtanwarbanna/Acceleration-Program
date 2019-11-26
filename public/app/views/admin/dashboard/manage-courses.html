@@ -28,6 +28,17 @@
             <!-- Card Body -->
             <div class="dt-card__body">
 
+                <div class="alert alert-success mb-6" role="alert" ng-show="courseManagement.removeCourseSuccessMsg">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>{{ courseManagement.removeCourseSuccessMsg }}</p>
+                </div>
+
+                <div class="alert alert-danger mb-6" role="alert" ng-show="courseManagement.removeCourseErrorMsg">
+                    <h4 class="alert-heading">Oops!</h4>
+                    <p>{{ courseManagement.removeCourseErrorMsg }}</p>
+
+                </div>
+
                 <!-- Card -->
                 <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom" ng-repeat="course in courseManagement.courses | filter : courseName">
 
@@ -39,7 +50,7 @@
                             <span class="badge bg-orange text-white text-uppercase">{{ course.category }} Course</span>
                         </div>
                         <!-- /slider header -->
-                        <img class="img-fluid" src="assets/images/course.jpeg" alt="Beach">
+                        <img class="img-fluid" src="/assets/uploads/{{ course.poster }}" alt="Beach">
                     </div>
                     <!-- /slider -->
 
@@ -71,10 +82,10 @@
                         <!-- Card Footer -->
                         <div class="card-footer d-flex flex-column justify-content-between p-0 text-sm-right">
                             <!-- Pricing -->
-                            <a href="javascript:void(0)"
-                               class="display-5 font-weight-500 mb-6">
-                                <i class="icon icon-calendarr icon-fw mr-2"></i><span
-                                    class="align-middle"></span> </a>
+                            <a ng-click="courseManagement.removeCourse(course._id);" class="display-5 font-weight-500 mb-6">
+                                <i class="icon icon-trash icon-fw mr-2" style="color: red;"></i>
+                                <span class="align-middle"></span>
+                            </a>
                             <!-- /pricing -->
 
                             <!-- Card Button -->

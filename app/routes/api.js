@@ -11,6 +11,43 @@ var CourseRequest = require('../models/courseRequest');
 var jwt = require('jsonwebtoken');
 var secret = 'pankaj';
 var nodemailer = require('nodemailer');
+let multer = require('multer');
+
+var imageStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __basedir + '/public/assets/uploads/')
+    },
+    filename: function (req, file, cb) {
+
+        if(!file.originalname.match(/\.(jpeg|png|jpg|JPG)$/)) {
+            let err = new Error();
+            err.code = 'filetype';
+            return cb(err);
+        } else {
+            cb(null,Date.now() + '_' + file.originalname.replace(/ /g,'')) // replace - to remove all white spaces
+        }
+    }
+});
+
+var fileStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __basedir + '/public/assets/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null,Date.now() + '_' + file.originalname.replace(/ /g,'')) // replace - to remove all white spaces
+    }
+});
+
+var upload = multer({
+    storage: imageStorage,
+    limits : { fileSize : 100000000000000 }
+}).single('thumbnail');
+
+var fileUpload = multer({
+    storage: fileStorage,
+    limits : { fileSize : 100000000000000 }
+}).single('myfile');
+
 
 module.exports = function (router){
 
@@ -23,8 +60,89 @@ module.exports = function (router){
         }
     });
 
+    // Upload Profile Picture
+    router.post('/uploadImage', function (req, res) {
+        upload(req, res, function (err) {
+            if (err) {
+                if(err.code === 'LIMIT_FILE_SIZE') {
+                    res.json({
+                        success : false,
+                        message : 'File is too large.'
+                    })
+                } else if(err.code === 'filetype') {
+                    res.json({
+                        success : false,
+                        message : 'File type invalid.'
+                    })
+                } else {
+                    console.log(err);
+                    res.json({
+                        success : false,
+                        message : 'File was not able to be uploaded'
+                    })
+                }
+            } else {
+
+                if(!req.file) {
+                    res.json({
+                        success: false,
+                        message: 'File missing.'
+                    })
+                } else {
+                    console.log(req.file);
+                    res.json({
+                        success : true,
+                        message : 'File Uploaded successfully.',
+                        filename : req.file.filename
+                    })
+                }
+            }
+        })
+    });
+
+    // Upload Profile Picture
+    router.post('/upload', function (req, res) {
+        fileUpload(req, res, function (err) {
+            if (err) {
+                if(err.code === 'LIMIT_FILE_SIZE') {
+                    res.json({
+                        success : false,
+                        message : 'File is too large.'
+                    })
+                } else if(err.code === 'filetype') {
+                    res.json({
+                        success : false,
+                        message : 'File type invalid.'
+                    })
+                } else {
+                    console.log(err);
+                    res.json({
+                        success : false,
+                        message : 'File was not able to be uploaded'
+                    })
+                }
+            } else {
+
+                if(!req.file) {
+                    res.json({
+                        success: false,
+                        message: 'File missing.'
+                    })
+                } else {
+                    console.log(req.file);
+                    res.json({
+                        success : true,
+                        message : 'File Uploaded successfully.',
+                        filename : req.file.filename
+                    })
+                }
+            }
+        })
+    });
+
+
     // User register API
-    router.post('/register',function (req, res) {
+    router.post('/register', auth.ensureAdmin, function (req, res) {
 
         var user = new User();
 
@@ -34,6 +152,8 @@ module.exports = function (router){
         user.password = req.body.password;
         user.position = req.body.position;
         user.branch = req.body.branch;
+        user.address = req.body.address;
+        user.permission = req.body.permission;
         user.temporarytoken = jwt.sign({ email : user.email , username : user.username }, secret , { expiresIn : '24h' });
 
         //console.log(req.body);
@@ -74,7 +194,7 @@ module.exports = function (router){
 
                     res.json({
                         success : true,
-                        message : 'Account registered!'
+                        message : 'Account created!'
                     });
                 }
             });
@@ -550,7 +670,7 @@ module.exports = function (router){
 
         //console.log(req.decoded.email);
         // getting profile of user from database using email, saved in the token in localStorage
-        User.findOne({ email : req.decoded.email }).select('_id email username name address position branch').exec(function (err, user) {
+        User.findOne({ email : req.decoded.email }).select('_id email username name address position branch address profile_url').exec(function (err, user) {
             if(err) throw err;
 
             if(!user) {
@@ -686,10 +806,13 @@ module.exports = function (router){
     // save my work
     router.post('/saveMyWork', auth.ensureUser, function (req, res) {
 
-        var workstation = new Workstation();
+        let workstation = new Workstation();
 
         workstation.work = req.body.work;
         workstation.user_email = req.decoded.email;
+        if(req.body.work_url) {
+            workstation.work_url = req.body.work_url;
+        }
         workstation.timestamp = new Date();
 
         workstation.save(function (err) {
@@ -767,6 +890,42 @@ module.exports = function (router){
             }
         })
     });
+
+    // update profile picture
+    router.post('/updateProfilePictureURL', function (req, res) {
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'Please login.'
+            })
+        } else {
+            console.log('this shit reached here');
+            User.findOne({ username : req.decoded.username }).select('profile_url').exec(function (err, user) {
+                if(err) {
+                    res.json({
+                        success : false,
+                        message : 'Something went wrong!'
+                    })
+                } else {
+                    user.profile_url = req.body.filename;
+
+                    user.save(function (err) {
+                        if(err) {
+                            res.json({
+                                success : false,
+                                message : 'Something went wrong!'
+                            })
+                        } else {
+                            res.json({
+                                success : true,
+                                message : 'Profile picture successfully updated. Please Refresh to view changed.'
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
 
     return router;
 };

@@ -1,6 +1,6 @@
 <!-- Page Header -->
 <div class="dt-page__header">
-    <h1 class="dt-page__title">Register Yourself</h1>
+    <h1 class="dt-page__title">Create New User</h1>
 </div>
 
 <div class="row">
@@ -14,15 +14,15 @@
             <div class="dt-card__body">
 
                 <!-- Form -->
-                <form ng-submit="register.regUser(regData);" class="mb-6">
+                <form ng-submit="register.regUser(regData);" class="mb-6" ng-show="!register.successMsg">
                     <div class="form-row">
                         <div class="col-sm-4 mb-3">
                             <label>Full Name  </label>
-                            <input class="form-control" type="text" name="name" placeholder="Enter your name" ng-model="register.regData.name" required>
+                            <input class="form-control" type="text" name="name" placeholder="Enter name" ng-model="register.regData.name" required>
                         </div>
                         <div class="col-sm-4 mb-3">
                             <label>Email </label>
-                            <input class="form-control" type="email" name="email" placeholder="Enter your email" ng-model="register.regData.email" required>
+                            <input class="form-control" type="email" name="email" placeholder="Enter email" ng-model="register.regData.email" required>
                         </div>
                         <div class="col-sm-4 mb-3">
                             <label>Username </label>
@@ -30,7 +30,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupPrepend2">@</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="First name" ng-model="register.regData.username" required>
+                                <input type="text" class="form-control" placeholder="Enter username" ng-model="register.regData.username" required>
                             </div>
                         </div>
                     </div>
@@ -38,19 +38,35 @@
                         <div class="col-sm-6 mb-3">
                             <label>Select Position :</label>
                             <select class="form-control" id="simple-select" ng-model="register.regData.position" required>
-                                <option value="">-- Select your position --</option>
+                                <option value="">-- Select position --</option>
                                 <option ng-repeat="category in main.categories" value="{{ category.category }}">{{ category.category }}</option>
                             </select>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <label>Branch / Location : </label>
-                            <input class="form-control" type="text" name="branch" placeholder="Enter your branch/location" ng-model="register.regData.branch" required>
+                            <input class="form-control" type="text" name="branch" placeholder="Enter branch/location" ng-model="register.regData.branch" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Address :</label>
+                            <input class="form-control" type="text" name="address" placeholder="Enter address" ng-model="register.regData.address" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-sm-12 mb-3">
                             <label>Password :</label>
-                            <input class="form-control" type="password" name="password" placeholder="Enter your password" ng-model="register.regData.password" required>
+                            <input class="form-control" type="text" name="password" placeholder="Enter password" ng-model="register.regData.password" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Select Permission :</label>
+                            <select class="form-control" id="simple-select2" ng-model="register.regData.permission" required>
+                                <option value="">-- Select permission --</option>
+                                <option value="user"> User </option>
+                                <option value="admin"> Admin </option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,7 +78,7 @@
                             </label>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Register Now</button>
+                    <button class="btn btn-primary" type="submit">Create User Now</button>
                 </form>
                 <!-- /form -->
                 <div class="text-center" ng-show="register.loading">
@@ -100,32 +116,32 @@
                 <form ng-submit="register.regUser(regData);">
 
                     <label>Name : </label>
-                    <input class="form-control" type="text" name="name" placeholder="Enter your name" ng-model="register.regData.name" required>
+                    <input class="form-control" type="text" name="name" placeholder="Enter   name" ng-model="register.regData.name" required>
                     <br>
 
                     <label>Username :</label>
-                    <input class="form-control" type="text" name="username" placeholder="Enter your username" ng-model="register.regData.username" required>
+                    <input class="form-control" type="text" name="username" placeholder="Enter   username" ng-model="register.regData.username" required>
                     <br>
 
                     <label>Email :</label>
-                    <input class="form-control" type="email" name="email" placeholder="Enter your email" ng-model="register.regData.email" required>
+                    <input class="form-control" type="email" name="email" placeholder="Enter   email" ng-model="register.regData.email" required>
                     <br>
 
                     <label>Password :</label>
-                    <input class="form-control" type="password" name="password" placeholder="Enter your password" ng-model="register.regData.password" required>
+                    <input class="form-control" type="password" name="password" placeholder="Enter   password" ng-model="register.regData.password" required>
                     <br>
 
                     <label>Branch / Location : </label>
-                    <input class="form-control" type="text" name="branch" placeholder="Enter your branch/location" ng-model="register.regData.branch" required>
+                    <input class="form-control" type="text" name="branch" placeholder="Enter   branch/location" ng-model="register.regData.branch" required>
                     <br>
 
                     <label>Address : </label>
-                    <input class="form-control" type="text" name="address" placeholder="Enter your address" ng-model="register.regData.address" required>
+                    <input class="form-control" type="text" name="address" placeholder="Enter   address" ng-model="register.regData.address" required>
                     <br>
 
                     <label>Select Position :</label>
                     <select class="form-control" id="simple-select" ng-model="register.regData.position" required>
-                        <option value="">&#45;&#45; Select your position &#45;&#45;</option>
+                        <option value="">&#45;&#45; Select   position &#45;&#45;</option>
                         <option value="cameraman">Camera Man</option>
                         <option value="hr">HR</option>
                         <option value="employee">Employee</option>

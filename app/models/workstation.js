@@ -11,6 +11,9 @@ var workstationSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    work_url : {
+        type : String
+    },
     timestamp : {
         type : Date,
         required : true

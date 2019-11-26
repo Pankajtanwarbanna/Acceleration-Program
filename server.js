@@ -16,9 +16,14 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 // diff. front end and backend routes
 app.use('/api', apiRoutes, adminApiRoutes);
+global.__basedir = __dirname;
+
+let mongoURI = 'mongodb://admin:acceleration123@ds249717.mlab.com:49717/acceleration';
+
+let localURI = 'mongodb://localhost:27017/acceleration';
 
 // connecting to mongo database
-mongoose.connect('mongodb://admin:acceleration123@ds249717.mlab.com:49717/acceleration', { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
+mongoose.connect(localURI , { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
     if(err) {
         console.log(err);
     } else {

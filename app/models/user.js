@@ -32,6 +32,15 @@ var userSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    address : {
+        type : String,
+        required : true
+    },
+    profile_url : {
+        type : String,
+        required : true,
+        default : 'default_profile.jpeg'
+    },
     active : {
         type : Boolean,
         required : true,

@@ -19,6 +19,11 @@ var courseSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    poster : {
+        type : String,
+        required : true,
+        default : 'course.jpeg'
+    },
     timestamp : {
         type : Date,
         required : true

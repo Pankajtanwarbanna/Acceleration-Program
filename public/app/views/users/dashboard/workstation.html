@@ -24,6 +24,12 @@
                             <textarea class="form-control" rows="5" name="workspace" placeholder="Write your work here.." ng-model="workstation.workData.work" required></textarea>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col-sm-12 mb-3">
+                            <label>Upload Work Files </label>
+                            <input class="form-control" type="file" file-model="file.myfile" name="myfile">
+                        </div>
+                    </div>
                     <button class="btn btn-success" type="submit">Save my work!</button>
                 </form>
 
@@ -72,8 +78,13 @@
                 <div class="form-row">
                     <div class="col-sm-12 mb-3">
                         <label>Your personal workspace!  </label>
-                        <textarea class="form-control" rows="5" name="workspace" placeholder="Write your work here.." ng-model="work.work" required></textarea>
+                        <h2>{{ work.work }}</h2>
+                        <p>Saved on {{ work.timestamp | date : 'MMM d, y'}}</p>
                     </div>
+                </div>
+
+                <div ng-show="work.work_url">
+                    <a href="assets/uploads/{{ work.work_url }}" target="_blank" class="btn btn-primary btn-block">view your work</a>
                 </div>
 
             </div>

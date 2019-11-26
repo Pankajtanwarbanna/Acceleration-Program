@@ -4,6 +4,32 @@ let User = require('../models/user');
 let Course = require('../models/course');
 let Workshop = require('../models/workshop');
 let CourseRequest = require('../models/courseRequest');
+let multer = require('multer');
+
+var imageStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __basedir + '/public/assets/uploads/')
+    },
+    filename: function (req, file, cb) {
+
+        if(!file.originalname.match(/\.(jpeg|png|jpg|JPG)$/)) {
+            let err = new Error();
+            err.code = 'filetype';
+            return cb(err);
+        } else {
+            cb(null,Date.now() + '_' + file.originalname.replace(/ /g,'')) // replace - to remove all white spaces
+        }
+    }
+});
+
+var fileStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, __basedir + '/public/assets/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null,Date.now() + '_' + file.originalname.replace(/ /g,'')) // replace - to remove all white spaces
+    }
+});
 
 module.exports = function (router){
 
@@ -82,7 +108,7 @@ module.exports = function (router){
             res.json({
                 success : false,
                 message : 'Ensure you fill all the fields.'
-            })
+            });
         } else {
             let course = new Course();
 
@@ -90,6 +116,10 @@ module.exports = function (router){
             course.category = req.body.category;
             course.description = req.body.description;
             course.course_url = req.body.course_url;
+
+            if(req.body.poster) {
+                course.poster = req.body.poster;
+            }
             course.timestamp = new Date();
 
             course.save(function (err) {
@@ -110,7 +140,7 @@ module.exports = function (router){
 
     // get all courses
     router.get('/getAllCourses', auth.ensureAdmin, function (req, res) {
-        Course.find({ }).select('course_name category description timestamp').lean().exec(function (err, courses) {
+        Course.find({ }).select('course_name category description poster timestamp').lean().exec(function (err, courses) {
             if(err) {
                 res.json({
                     success : false,
@@ -183,6 +213,9 @@ module.exports = function (router){
         workshop.venue = req.body.venue;
         workshop.description = req.body.description;
         workshop.time_date = req.body.time_date;
+        if(req.body.poster) {
+            workshop.poster = req.body.poster;
+        }
         workshop.timestamp = new Date();
 
         workshop.save(function (err) {
@@ -296,6 +329,23 @@ module.exports = function (router){
                 res.json({
                     success : true,
                     users : users
+                })
+            }
+        })
+    });
+
+    // remove course
+    router.delete('/removeCourse/:courseID', auth.ensureAdmin, function (req, res) {
+        Course.findByIdAndDelete({ _id : req.params.courseID }, function (err) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Something went wrong, try again later!'
+                })
+            } else {
+                res.json({
+                    success : true,
+                    message : 'Course successfully deleted.'
                 })
             }
         })

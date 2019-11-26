@@ -76,5 +76,10 @@ angular.module('adminServices',[])
         return $http.get('/api/getUsers')
     };
 
+    // remove course
+    adminFactory.removeCourse = function (courseID) {
+        return $http.delete('/api/removeCourse/' + courseID);
+    };
+
     return adminFactory;
 });

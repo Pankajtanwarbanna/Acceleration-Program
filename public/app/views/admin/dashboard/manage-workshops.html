@@ -1,9 +1,19 @@
-<h1>Manage Workshop</h1>
+<h1>Manage Workshops</h1>
 
+<div class="row mb-6">
+    <div class="col-xl-12">
+        <form class="search-box" style="max-width: 100%">
+            <div class="input-group">
+                <input class="form-control" placeholder="Search in workshops..." ng-model="searchWorkshop" type="search">
+                <span class="search-icon"><i class="icon icon-search icon-lg"></i></span>
+            </div>
+        </form>
+    </div>
+</div>
 
 <div class="row">
     <!-- Grid Item -->
-    <div class="col-xl-12" ng-repeat="workshop in workshopManagement.workshops">
+    <div class="col-xl-12" ng-repeat="workshop in workshopManagement.workshops | filter : searchWorkshop">
 
         <!-- Card -->
         <div class="card horizontal">

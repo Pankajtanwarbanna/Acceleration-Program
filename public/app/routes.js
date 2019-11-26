@@ -3,13 +3,6 @@ var app = angular.module('userRoutes', ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
 
-            .when('/register', {
-                templateUrl : '/app/views/users/authentication/register.html',
-                controller : 'regCtrl',
-                controllerAs : 'register',
-                authenticated : false
-            })
-
             .when('/login', {
                 templateUrl : '/app/views/users/authentication/login.html',
                 authenticated : false
@@ -100,6 +93,15 @@ var app = angular.module('userRoutes', ['ngRoute'])
 
 
             // admin dashboard
+            .when('/create-new-user', {
+                templateUrl : '/app/views/users/authentication/register.html',
+                controller : 'regCtrl',
+                controllerAs : 'register',
+                authenticated : true,
+                permission : 'admin'
+            })
+
+
             .when('/add-new-course', {
                 templateUrl : '/app/views/admin/dashboard/add-new-course.html',
                 authenticated : true,
