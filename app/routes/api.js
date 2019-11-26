@@ -142,7 +142,7 @@ module.exports = function (router){
 
 
     // User register API
-    router.post('/register', auth.ensureAdmin, function (req, res) {
+    router.post('/register', function (req, res) {
 
         var user = new User();
 
