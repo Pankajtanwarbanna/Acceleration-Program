@@ -72,17 +72,24 @@ angular.module('managementController', ['adminServices','fileModelDirective','up
             uploadFile.uploadImage($scope.file).then(function (data) {
                 if(data.data.success) {
                     app.courseData.poster = data.data.filename;
-                    admin.addNewCourse(app.courseData).then(function (data) {
+                    uploadFile.upload($scope.file).then(function (data) {
                         if(data.data.success) {
-                            app.addNewCourseSuccessMsg = data.data.message;
-                            app.addNewCourseLoading = false;
+                            app.courseData.course_file_url = data.data.filename;
+                            admin.addNewCourse(app.courseData).then(function (data) {
+                                if(data.data.success) {
+                                    app.addNewCourseSuccessMsg = data.data.message;
+                                    app.addNewCourseLoading = false;
+                                } else {
+                                    app.addNewCourseErrorMsg = data.data.message;
+                                    app.addNewCourseLoading = false;
+                                }
+                            });
                         } else {
-                            app.addNewCourseErrorMsg = data.data.message;
-                            app.addNewCourseLoading = false;
+                            app.editCourseErrorMsg = 'Course files uploading error : ' + data.data.message;
                         }
                     });
                 } else {
-                    app.editCourseErrorMsg = data.data.message;
+                    app.editCourseErrorMsg = 'Course poster uploading error : ' + data.data.message;
                 }
             });
         } else {
@@ -114,6 +121,7 @@ angular.module('managementController', ['adminServices','fileModelDirective','up
             uploadFile.uploadImage($scope.file).then(function (data) {
                 if(data.data.success) {
                     app.courseData.poster = data.data.filename;
+
                     admin.editCourse(app.courseData).then(function (data) {
                         console.log(data);
                         if(data.data.success) {

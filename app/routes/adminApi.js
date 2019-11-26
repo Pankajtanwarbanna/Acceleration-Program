@@ -120,6 +120,10 @@ module.exports = function (router){
             if(req.body.poster) {
                 course.poster = req.body.poster;
             }
+
+            if(req.body.course_file_url) {
+                course.course_file_url = req.body.course_file_url;
+            }
             course.timestamp = new Date();
 
             course.save(function (err) {

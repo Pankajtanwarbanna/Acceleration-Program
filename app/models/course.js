@@ -24,6 +24,9 @@ var courseSchema = new mongoose.Schema({
         required : true,
         default : 'course.jpeg'
     },
+    course_file_url : {
+        type : String
+    },
     timestamp : {
         type : Date,
         required : true
